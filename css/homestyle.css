@@ -315,10 +315,11 @@ main {
         flex-direction: column;
         gap: 1rem;
         padding: 1rem;
+        margin-bottom: 10%;
     }
 
     main {
-        margin-top: 120px;
+        margin-top: 12%;
     }
 
     .hero h1 {
@@ -331,7 +332,7 @@ main {
 
     .search-box input {
         width: 100%;
-        max-width: 300px;
+        max-width: 30%;
     }
 }
 
