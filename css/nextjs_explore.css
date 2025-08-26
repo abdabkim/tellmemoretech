@@ -1,0 +1,700 @@
+	* {
+	    margin: 0;
+	    padding: 0;
+	    box-sizing: border-box;
+	}
+
+	body {
+	    font-family: "Segoe UI", sans-serif;
+	    background-color: #f8fafc;
+	    color: #334155;
+	    line-height: 1.6;
+	}
+
+	.site-header {
+	    display: flex;
+	    justify-content: space-between;
+	    align-items: center;
+	    background-color: #ffffff;
+	    padding: 1rem 2rem;
+	    position: fixed;
+	    top: 0;
+	    left: 0;
+	    right: 0;
+	    z-index: 1000;
+	    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+	}
+
+	.logo {
+	    font-size: 1.5rem;
+	    font-weight: bold;
+	    cursor: pointer;
+	    color: #1e293b;
+	    text-decoration: none;
+	}
+
+	.logo span {
+	    color: #3b82f6;
+	}
+
+	nav ul {
+	    display: flex;
+	    gap: 1.5rem;
+	    list-style: none;
+	}
+
+	nav a {
+	    color: #64748b;
+	    font-weight: 500;
+	    transition: color 0.3s ease;
+	    cursor: pointer;
+	    text-decoration: none;
+	}
+
+	nav a:hover {
+	    color: #3b82f6;
+	}
+
+	.btn {
+	    padding: 0.6rem 1.2rem;
+	    border-radius: 30px;
+	    font-weight: bold;
+	    transition: all 0.3s ease;
+	    cursor: pointer;
+	    border: none;
+	    text-decoration: none;
+	    display: inline-block;
+	}
+
+	.btn.primary {
+	    background-color: #3b82f6;
+	    color: #ffffff;
+	}
+
+	.btn.secondary {
+	    background-color: transparent;
+	    border: 2px solid #000000;
+	    color: #000000;
+	}
+
+	.btn.nextjs-style {
+	    background: linear-gradient(135deg, #000000 0%, #333333 100%);
+	    color: white;
+	    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+	}
+
+	.btn:hover {
+	    transform: translateY(-2px);
+	    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+	}
+
+	.btn.nextjs-style:hover {
+	    background: linear-gradient(135deg, #333333 0%, #000000 100%);
+	    color: white;
+	}
+
+	main {
+	    margin-top: 80px;
+	    min-height: calc(100vh - 80px);
+	}
+
+	.hero-section {
+	    background: linear-gradient(135deg,
+	            #000000 0%,
+	            #1a1a1a 50%,
+	            #333333 100%);
+	    color: white;
+	    padding: 4rem 2rem;
+	    position: relative;
+	    overflow: hidden;
+	    min-height: 85vh;
+	    display: flex;
+	    align-items: center;
+	}
+
+	.hero-section::before {
+	    content: "";
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    right: 0;
+	    bottom: 0;
+	    background: radial-gradient(circle at 20% 30%,
+	            rgba(255, 255, 255, 0.05) 0%,
+	            transparent 50%),
+	        radial-gradient(circle at 80% 70%,
+	            rgba(255, 255, 255, 0.03) 0%,
+	            transparent 50%),
+	        linear-gradient(45deg,
+	            transparent 30%,
+	            rgba(255, 255, 255, 0.02) 50%,
+	            transparent 70%);
+	}
+
+	.floating-triangles {
+	    position: absolute;
+	    width: 100%;
+	    height: 100%;
+	    overflow: hidden;
+	    pointer-events: none;
+	}
+
+	.triangle {
+	    position: absolute;
+	    width: 0;
+	    height: 0;
+	    border-style: solid;
+	    opacity: 0.1;
+	    animation: float 8s ease-in-out infinite;
+	}
+
+	.triangle:nth-child(1) {
+	    border-left: 30px solid transparent;
+	    border-right: 30px solid transparent;
+	    border-bottom: 50px solid white;
+	    top: 20%;
+	    left: 10%;
+	    animation-delay: 0s;
+	}
+
+	.triangle:nth-child(2) {
+	    border-left: 20px solid transparent;
+	    border-right: 20px solid transparent;
+	    border-bottom: 35px solid white;
+	    top: 60%;
+	    right: 15%;
+	    animation-delay: 2s;
+	}
+
+	.triangle:nth-child(3) {
+	    border-left: 25px solid transparent;
+	    border-right: 25px solid transparent;
+	    border-bottom: 40px solid white;
+	    bottom: 30%;
+	    left: 70%;
+	    animation-delay: 4s;
+	}
+
+	@keyframes float {
+
+	    0%,
+	    100% {
+	        transform: translateY(0px) rotate(0deg);
+	    }
+
+	    33% {
+	        transform: translateY(-20px) rotate(5deg);
+	    }
+
+	    66% {
+	        transform: translateY(10px) rotate(-3deg);
+	    }
+	}
+
+	.hero-content {
+	    max-width: 1200px;
+	    margin: 0 auto;
+	    position: relative;
+	    z-index: 1;
+	    display: grid;
+	    grid-template-columns: 1fr 300px;
+	    gap: 4rem;
+	    align-items: center;
+	}
+
+	.hero-text h1 {
+	    font-size: 4rem;
+	    font-weight: 900;
+	    margin-bottom: 1rem;
+	    background: linear-gradient(135deg, #ffffff 0%, #cccccc 100%);
+	    background-clip: text;
+	    -webkit-background-clip: text;
+	    -webkit-text-fill-color: transparent;
+	}
+
+	.hero-text .tagline {
+	    font-size: 1.6rem;
+	    color: #ffffff;
+	    margin-bottom: 1.5rem;
+	    font-weight: 600;
+	    opacity: 0.9;
+	}
+
+	.hero-text p {
+	    font-size: 1.3rem;
+	    opacity: 0.8;
+	    margin-bottom: 2.5rem;
+	    line-height: 1.7;
+	}
+
+	.nextjs-logo {
+	    width: 280px;
+	    height: 280px;
+	    background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+	    border-radius: 50%;
+	    display: flex;
+	    align-items: center;
+	    justify-content: center;
+	    font-size: 8rem;
+	    color: #000000;
+	    animation: logoSpin 20s linear infinite;
+	    box-shadow: 0 0 60px rgba(255, 255, 255, 0.2),
+	        inset 0 0 60px rgba(0, 0, 0, 0.1);
+	    position: relative;
+	}
+
+	.nextjs-logo::before {
+	    content: "";
+	    position: absolute;
+	    top: 50%;
+	    left: 50%;
+	    transform: translate(-50%, -50%);
+	    width: 60%;
+	    height: 60%;
+	    border: 3px solid #000000;
+	    border-radius: 50%;
+	    border-top-color: transparent;
+	    animation: innerRotate 3s linear infinite;
+	}
+
+	@keyframes logoSpin {
+	    from {
+	        transform: rotate(0deg);
+	    }
+
+	    to {
+	        transform: rotate(360deg);
+	    }
+	}
+
+	@keyframes innerRotate {
+	    from {
+	        transform: translate(-50%, -50%) rotate(0deg);
+	    }
+
+	    to {
+	        transform: translate(-50%, -50%) rotate(360deg);
+	    }
+	}
+
+	.features-section {
+	    background: white;
+	    padding: 5rem 2rem;
+	    position: relative;
+	}
+
+	.features-container {
+	    max-width: 1200px;
+	    margin: 0 auto;
+	}
+
+	.section-header {
+	    text-align: center;
+	    margin-bottom: 4rem;
+	}
+
+	.section-header h2 {
+	    font-size: 3.5rem;
+	    color: #1e293b;
+	    margin-bottom: 1rem;
+	    font-weight: 800;
+	    position: relative;
+	}
+
+	.section-header h2::after {
+	    content: "⚡";
+	    position: absolute;
+	    right: -80px;
+	    top: 0;
+	    font-size: 2.5rem;
+	    animation: pulse 2s ease-in-out infinite;
+	}
+
+	@keyframes pulse {
+
+	    0%,
+	    100% {
+	        transform: scale(1);
+	        opacity: 1;
+	    }
+
+	    50% {
+	        transform: scale(1.1);
+	        opacity: 0.8;
+	    }
+	}
+
+	.section-header p {
+	    font-size: 1.2rem;
+	    color: #64748b;
+	    max-width: 700px;
+	    margin: 0 auto;
+	}
+
+	.features-grid {
+	    display: grid;
+	    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+	    gap: 3rem;
+	}
+
+	.feature-card {
+	    background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+	    border-radius: 25px;
+	    padding: 3rem 2.5rem;
+	    position: relative;
+	    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+	    border: 1px solid #e2e8f0;
+	    overflow: hidden;
+	}
+
+	.feature-card::before {
+	    content: "";
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    right: 0;
+	    height: 4px;
+	    background: linear-gradient(90deg, #000000 0%, #333333 100%);
+	    transform: scaleX(0);
+	    transition: transform 0.3s ease;
+	}
+
+	.feature-card:hover::before {
+	    transform: scaleX(1);
+	}
+
+	.feature-card:hover {
+	    transform: translateY(-15px) scale(1.02);
+	    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+	    border-color: #000000;
+	}
+
+	.feature-icon {
+	    width: 80px;
+	    height: 80px;
+	    background: linear-gradient(135deg, #000000 0%, #333333 100%);
+	    border-radius: 20px;
+	    display: flex;
+	    align-items: center;
+	    justify-content: center;
+	    font-size: 2.5rem;
+	    margin-bottom: 2rem;
+	    color: white;
+	    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+	}
+
+	.feature-card h3 {
+	    font-size: 1.6rem;
+	    color: #1e293b;
+	    margin-bottom: 1.5rem;
+	    font-weight: 700;
+	}
+
+	.feature-card p {
+	    color: #64748b;
+	    line-height: 1.7;
+	    margin-bottom: 2rem;
+	}
+
+	.feature-highlight {
+	    background: linear-gradient(135deg, #000000 0%, #333333 100%);
+	    color: white;
+	    padding: 0.6rem 1.2rem;
+	    border-radius: 25px;
+	    font-size: 0.85rem;
+	    font-weight: 600;
+	    display: inline-block;
+	    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+	}
+
+	.performance-section {
+	    background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+	    padding: 5rem 2rem;
+	}
+
+	.performance-container {
+	    max-width: 1200px;
+	    margin: 0 auto;
+	}
+
+	.performance-showcase {
+	    display: grid;
+	    grid-template-columns: 1fr 1fr;
+	    gap: 4rem;
+	    align-items: center;
+	    margin-top: 3rem;
+	}
+
+	.performance-metrics {
+	    background: white;
+	    border-radius: 20px;
+	    padding: 3rem;
+	    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+	    position: relative;
+	}
+
+	.metric-item {
+	    display: flex;
+	    justify-content: space-between;
+	    align-items: center;
+	    padding: 1.5rem 0;
+	    border-bottom: 1px solid #e2e8f0;
+	}
+
+	.metric-item:last-child {
+	    border-bottom: none;
+	}
+
+	.metric-label {
+	    font-weight: 600;
+	    color: #1e293b;
+	}
+
+	.metric-value {
+	    font-size: 1.5rem;
+	    font-weight: 900;
+	    color: #000000;
+	}
+
+	.metric-bar {
+	    width: 100%;
+	    height: 8px;
+	    background: #e2e8f0;
+	    border-radius: 4px;
+	    margin-top: 0.5rem;
+	    overflow: hidden;
+	}
+
+	.metric-fill {
+	    height: 100%;
+	    background: linear-gradient(90deg, #000000 0%, #333333 100%);
+	    border-radius: 4px;
+	    animation: fillBar 2s ease-in-out forwards;
+	    transform-origin: left;
+	}
+
+	@keyframes fillBar {
+	    from {
+	        transform: scaleX(0);
+	    }
+
+	    to {
+	        transform: scaleX(1);
+	    }
+	}
+
+	.performance-content h3 {
+	    font-size: 2rem;
+	    color: #1e293b;
+	    margin-bottom: 1.5rem;
+	    font-weight: 700;
+	}
+
+	.performance-content p {
+	    color: #64748b;
+	    line-height: 1.7;
+	    margin-bottom: 2rem;
+	}
+
+	.benefit-list {
+	    display: grid;
+	    gap: 1rem;
+	}
+
+	.benefit-item {
+	    display: flex;
+	    align-items: center;
+	    gap: 1rem;
+	    padding: 1rem;
+	    background: white;
+	    border-radius: 10px;
+	    border-left: 4px solid #000000;
+	    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+	}
+
+	.benefit-icon {
+	    width: 40px;
+	    height: 40px;
+	    background: #000000;
+	    border-radius: 50%;
+	    display: flex;
+	    align-items: center;
+	    justify-content: center;
+	    color: white;
+	    font-weight: bold;
+	    flex-shrink: 0;
+	}
+
+	.deployment-section {
+	    background: white;
+	    padding: 5rem 2rem;
+	}
+
+	.deployment-container {
+	    max-width: 1000px;
+	    margin: 0 auto;
+	    text-align: center;
+	}
+
+	.deployment-grid {
+	    display: grid;
+	    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	    gap: 2rem;
+	    margin-top: 3rem;
+	}
+
+	.deployment-card {
+	    background: linear-gradient(145deg, #f8fafc 0%, #e2e8f0 100%);
+	    border-radius: 15px;
+	    padding: 2.5rem 2rem;
+	    transition: all 0.3s ease;
+	    border: 1px solid #e2e8f0;
+	    position: relative;
+	    overflow: hidden;
+	}
+
+	.deployment-card::after {
+	    content: "";
+	    position: absolute;
+	    top: 0;
+	    left: -100%;
+	    width: 100%;
+	    height: 100%;
+	    background: linear-gradient(90deg,
+	            transparent,
+	            rgba(0, 0, 0, 0.05),
+	            transparent);
+	    transition: left 0.5s;
+	}
+
+	.deployment-card:hover::after {
+	    left: 100%;
+	}
+
+	.deployment-card:hover {
+	    transform: translateY(-8px);
+	    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+	    border-color: #000000;
+	}
+
+	.deployment-icon {
+	    font-size: 3rem;
+	    margin-bottom: 1.5rem;
+	}
+
+	.deployment-card h4 {
+	    font-size: 1.3rem;
+	    color: #1e293b;
+	    margin-bottom: 1rem;
+	    font-weight: 700;
+	}
+
+	.deployment-card p {
+	    color: #64748b;
+	    line-height: 1.6;
+	}
+
+	.ecosystem-section {
+	    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+	    color: white;
+	    padding: 5rem 2rem;
+	    position: relative;
+	}
+
+	.ecosystem-container {
+	    max-width: 1200px;
+	    margin: 0 auto;
+	    text-align: center;
+	}
+
+	.ecosystem-container h2 {
+	    font-size: 3rem;
+	    margin-bottom: 2rem;
+	    font-weight: 800;
+	}
+
+	.ecosystem-grid {
+	    display: grid;
+	    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	    gap: 2.5rem;
+	    margin-top: 3rem;
+	}
+
+	.ecosystem-card {
+	    background: rgba(255, 255, 255, 0.05);
+	    border-radius: 20px;
+	    padding: 2.5rem;
+	    backdrop-filter: blur(10px);
+	    border: 1px solid rgba(255, 255, 255, 0.1);
+	    transition: all 0.3s ease;
+	    text-align: left;
+	}
+
+	.ecosystem-card:hover {
+	    transform: translateY(-10px);
+	    background: rgba(255, 255, 255, 0.1);
+	    border-color: #ffffff;
+	    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+	}
+
+	.ecosystem-icon {
+	    font-size: 3rem;
+	    margin-bottom: 1.5rem;
+	    display: block;
+	}
+
+	.ecosystem-card h4 {
+	    color: #ffffff;
+	    font-size: 1.3rem;
+	    margin-bottom: 1rem;
+	    font-weight: 700;
+	}
+
+	.ecosystem-card p {
+	    opacity: 0.9;
+	    line-height: 1.6;
+	    margin-bottom: 0;
+	}
+
+	@media (max-width: 768px) {
+	    .site-header {
+	        flex-direction: column;
+	        gap: 1rem;
+	        padding: 1rem;
+	    }
+
+	    main {
+	        margin-top: 120px;
+	    }
+
+	    .hero-content {
+	        grid-template-columns: 1fr;
+	        text-align: center;
+	        gap: 2rem;
+	    }
+
+	    .hero-text h1 {
+	        font-size: 2.8rem;
+	    }
+
+	    .nextjs-logo {
+	        width: 220px;
+	        height: 220px;
+	        font-size: 6rem;
+	        margin: 0 auto;
+	    }
+
+	    .performance-showcase {
+	        grid-template-columns: 1fr;
+	        gap: 2rem;
+	    }
+
+	    .section-header h2 {
+	        font-size: 2.5rem;
+	    }
+
+	    .section-header h2::after {
+	        right: -60px;
+	        font-size: 2rem;
+	    }
+	}

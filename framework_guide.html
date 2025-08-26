@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Framework Guide - Tell Me More Tech</title>
+  <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Segoe UI', sans-serif;
+        background-color: #f8fafc;
+        color: #334155;
+        line-height: 1.6;
+    }
+
+    .site-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #ffffff;
+        padding: 1rem 2rem;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        cursor: pointer;
+        color: #1e293b;
+        text-decoration: none;
+    }
+
+    .logo span {
+        color: #3b82f6;
+    }
+
+    nav ul {
+        display: flex;
+        gap: 1.5rem;
+        list-style: none;
+    }
+
+    nav a {
+        color: #64748b;
+        font-weight: 500;
+        transition: color 0.3s ease;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    nav a:hover {
+        color: #3b82f6;
+    }
+
+    .btn {
+        padding: 0.6rem 1.2rem;
+        border-radius: 6px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        border: none;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .btn.primary {
+        background-color: #3b82f6;
+        color: #ffffff;
+    }
+
+    .btn.guide-style {
+        background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);
+        color: white;
+        box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+
+    main {
+        margin-top: 80px;
+        min-height: calc(100vh - 80px);
+    }
+
+    .hero-section {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 4rem 2rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: 
+            radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+    }
+
+    .hero-content {
+        max-width: 800px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+    }
+
+    .hero-content h1 {
+        font-size: 3.5rem;
+        font-weight: 900;
+        margin-bottom: 1.5rem;
+    }
+
+    .hero-content p {
+        font-size: 1.3rem;
+        opacity: 0.9;
+        margin-bottom: 2rem;
+    }
+
+    .comparison-section {
+        background: white;
+        padding: 5rem 2rem;
+    }
+
+    .comparison-container {
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    .section-header {
+        text-align: center;
+        margin-bottom: 4rem;
+    }
+
+    .section-header h2 {
+        font-size: 3rem;
+        color: #1e293b;
+        margin-bottom: 1rem;
+        font-weight: 800;
+    }
+
+    .comparison-table {
+        background: white;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        border: 1px solid #e2e8f0;
+    }
+
+    .table-header {
+        background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);
+        color: white;
+        padding: 2rem;
+        display: grid;
+        grid-template-columns: 2fr repeat(6, 1fr);
+        gap: 1rem;
+        font-weight: 700;
+        text-align: center;
+    }
+
+    .table-row {
+        display: grid;
+        grid-template-columns: 2fr repeat(6, 1fr);
+        gap: 1rem;
+        padding: 2rem;
+        border-bottom: 1px solid #e2e8f0;
+        align-items: center;
+        transition: background-color 0.3s ease;
+    }
+
+    .table-row:hover {
+        background-color: #f8fafc;
+    }
+
+    .table-row:last-child {
+        border-bottom: none;
+    }
+
+    .criteria {
+        font-weight: 600;
+        color: #1e293b;
+        text-align: left;
+    }
+
+    .score {
+        text-align: center;
+        font-weight: 700;
+        font-size: 1.1rem;
+        padding: 0.5rem;
+        border-radius: 8px;
+        color: white;
+    }
+
+    .score.excellent { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }
+    .score.very-good { background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); }
+    .score.good { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); }
+    .score.fair { background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); }
+
+    .decision-tree {
+        background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+        padding: 5rem 2rem;
+    }
+
+    .tree-container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .tree-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 3rem;
+        margin-top: 3rem;
+    }
+
+    .decision-card {
+        background: white;
+        border-radius: 20px;
+        padding: 3rem 2.5rem;
+        position: relative;
+        transition: all 0.4s ease;
+        border: 1px solid #e2e8f0;
+        text-align: center;
+    }
+
+    .decision-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(139, 92, 246, 0.15);
+        border-color: #8b5cf6;
+    }
+
+    .decision-icon {
+        font-size: 4rem;
+        margin-bottom: 2rem;
+    }
+
+    .decision-card h3 {
+        font-size: 1.8rem;
+        color: #1e293b;
+        margin-bottom: 1.5rem;
+        font-weight: 700;
+    }
+
+    .decision-card p {
+        color: #64748b;
+        line-height: 1.7;
+        margin-bottom: 2rem;
+    }
+
+    .recommended-framework {
+        background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 25px;
+        font-weight: 700;
+        font-size: 1.1rem;
+        display: inline-block;
+        margin-bottom: 1rem;
+    }
+
+    .framework-features {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        justify-content: center;
+    }
+
+    .feature-tag {
+        background: #f1f5f9;
+        color: #64748b;
+        padding: 0.3rem 0.8rem;
+        border-radius: 15px;
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+
+    .learning-paths {
+        background: white;
+        padding: 5rem 2rem;
+    }
+
+    .paths-container {
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    .path-timeline {
+        margin-top: 3rem;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .timeline-item {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 3rem;
+        position: relative;
+    }
+
+    .timeline-number {
+        width: 70px;
+        height: 70px;
+        background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 900;
+        font-size: 1.5rem;
+        margin-right: 2rem;
+        flex-shrink: 0;
+        box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+        position: relative;
+        z-index: 10;
+    }
+
+    .timeline-item:not(:last-child) .timeline-number::after {
+        content: '';
+        position: absolute;
+        top: 70px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 4px;
+        height: 60px;
+        background: linear-gradient(to bottom, #8b5cf6, #3b82f6);
+        border-radius: 2px;
+    }
+
+    .timeline-content-wrapper {
+        flex: 1;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+    }
+
+    .timeline-content {
+        background: #f8fafc;
+        border-radius: 15px;
+        padding: 2rem;
+        border: 1px solid #e2e8f0;
+        transition: all 0.3s ease;
+        height: fit-content;
+    }
+
+    .timeline-content:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(139, 92, 246, 0.1);
+        border-color: #8b5cf6;
+    }
+
+    .timeline-content h4 {
+        font-size: 1.3rem;
+        color: #1e293b;
+        margin-bottom: 1rem;
+        font-weight: 700;
+    }
+
+    .timeline-content p {
+        color: #64748b;
+        line-height: 1.6;
+    }
+
+    .resources-section {
+        background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+        color: white;
+        padding: 5rem 2rem;
+    }
+
+    .resources-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .resources-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2.5rem;
+        margin-top: 3rem;
+    }
+
+    .resource-card {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        padding: 2.5rem;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: all 0.3s ease;
+        text-align: left;
+    }
+
+    .resource-card:hover {
+        transform: translateY(-10px);
+        background: rgba(255, 255, 255, 0.15);
+        border-color: #8b5cf6;
+    }
+
+    .resource-icon {
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
+        display: block;
+    }
+
+    .resource-card h4 {
+        color: #8b5cf6;
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+        font-weight: 700;
+    }
+
+    @media (max-width: 768px) {
+        .site-header {
+            flex-direction: column;
+            gap: 1rem;
+            padding: 1rem;
+        }
+
+        main {
+            margin-top: 120px;
+        }
+
+        .hero-content h1 {
+            font-size: 2.5rem;
+        }
+
+        .table-header, .table-row {
+            grid-template-columns: 1fr;
+            text-align: center;
+            gap: 0.5rem;
+        }
+
+        .criteria {
+            text-align: center;
+            font-size: 1.1rem;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item {
+            display: block;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-content-wrapper {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .timeline-number {
+            margin-right: 0;
+            margin-bottom: 1rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .timeline-number::after {
+            display: none !important;
+        }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a href="tellmemore_tech_site.html" class="logo">Tell Me More <span>Tech</span></a>
+    <nav>
+      <ul>
+        <li><a href="frameworks.html">Frameworks</a></li>
+        <li><a href="#" onclick="alert('Dev Tools page coming soon!')">Dev Tools</a></li>
+        <li><a href="#" onclick="alert('Resources page coming soon!')">Resources</a></li>
+        <li><a href="#" onclick="alert('All Articles page coming soon!')">All Articles</a></li>
+      </ul>
+    </nav>
+    <a href="#" onclick="alert('📧 Subscribe to our newsletter!')" class="btn primary">Free Dev Tips</a>
+  </header>
+
+  <main>
+    <section class="hero-section">
+      <div class="hero-content">
+        <h1>The Complete Framework Guide</h1>
+        <p>Making the right framework choice can make or break your project. This comprehensive guide compares all major frameworks across key criteria to help you make the perfect decision for your next application.</p>
+        <button class="btn guide-style" onclick="alert('📧 Full guide downloading to your email!')" style="font-size: 1.1rem; padding: 1rem 2rem;">Download Complete Guide</button>
+      </div>
+    </section>
+
+    <section class="comparison-section">
+      <div class="comparison-container">
+        <div class="section-header">
+          <h2>Framework Comparison Matrix</h2>
+          <p>A comprehensive comparison across the most important criteria for choosing a frontend framework.</p>
+        </div>
+        
+        <div class="comparison-table">
+          <div class="table-header">
+            <div>Criteria</div>
+            <div>React</div>
+            <div>Vue.js</div>
+            <div>Angular</div>
+            <div>Svelte</div>
+            <div>Next.js</div>
+            <div>Nuxt.js</div>
+          </div>
+          
+          <div class="table-row">
+            <div class="criteria">Learning Curve</div>
+            <div class="score good">Moderate</div>
+            <div class="score excellent">Easy</div>
+            <div class="score fair">Steep</div>
+            <div class="score very-good">Easy+</div>
+            <div class="score good">Moderate</div>
+            <div class="score very-good">Easy+</div>
+          </div>
+          
+          <div class="table-row">
+            <div class="criteria">Performance</div>
+            <div class="score very-good">Very Good</div>
+            <div class="score very-good">Very Good</div>
+            <div class="score very-good">Very Good</div>
+            <div class="score excellent">Excellent</div>
+            <div class="score excellent">Excellent</div>
+            <div class="score excellent">Excellent</div>
+          </div>
+          
+          <div class="table-row">
+            <div class="criteria">Community Size</div>
+            <div class="score excellent">Huge</div>
+            <div class="score very-good">Large</div>
+            <div class="score very-good">Large</div>
+            <div class="score good">Growing</div>
+            <div class="score very-good">Large</div>
+            <div class="score good">Growing</div>
+          </div>
+          
+          <div class="table-row">
+            <div class="criteria">Job Market</div>
+            <div class="score excellent">Excellent</div>
+            <div class="score very-good">Very Good</div>
+            <div class="score very-good">Very Good</div>
+            <div class="score good">Good</div>
+            <div class="score very-good">Very Good</div>
+            <div class="score good">Good</div>
+          </div>
+          
+          <div class="table-row">
+            <div class="criteria">TypeScript Support</div>
+            <div class="score very-good">Very Good</div>
+            <div class="score very-good">Very Good</div>
+            <div class="score excellent">Built-in</div>
+            <div class="score very-good">Very Good</div>
+            <div class="score excellent">Built-in</div>
+            <div class="score very-good">Very Good</div>
+          </div>
+          
+          <div class="table-row">
+            <div class="criteria">Bundle Size</div>
+            <div class="score good">Medium</div>
+            <div class="score very-good">Small</div>
+            <div class="score fair">Large</div>
+            <div class="score excellent">Tiny</div>
+            <div class="score very-good">Optimized</div>
+            <div class="score very-good">Optimized</div>
+          </div>
+          
+          <div class="table-row">
+            <div class="criteria">Enterprise Ready</div>
+            <div class="score very-good">Very Good</div>
+            <div class="score very-good">Very Good</div>
+            <div class="score excellent">Excellent</div>
+            <div class="score good">Good</div>
+            <div class="score excellent">Excellent</div>
+            <div class="score very-good">Very Good</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="decision-tree">
+      <div class="tree-container">
+        <div class="section-header">
+          <h2>Choose Your Framework</h2>
+          <p>Answer these key questions to find the perfect framework for your project needs and team situation.</p>
+        </div>
+        
+        <div class="tree-grid">
+          <div class="decision-card">
+            <div class="decision-icon">🌱</div>
+            <h3>First Time Building?</h3>
+            <p>New to frontend frameworks? Looking for something approachable with excellent documentation and a gentle learning curve?</p>
+            <div class="recommended-framework">Recommended: Vue.js</div>
+            <div class="framework-features">
+              <span class="feature-tag">Gentle Learning</span>
+              <span class="feature-tag">Great Docs</span>
+              <span class="feature-tag">Progressive</span>
+            </div>
+          </div>
+
+          <div class="decision-card">
+            <div class="decision-icon">🏢</div>
+            <h3>Enterprise Application?</h3>
+            <p>Building large-scale applications with multiple teams? Need strict conventions, TypeScript, and enterprise features?</p>
+            <div class="recommended-framework">Recommended: Angular</div>
+            <div class="framework-features">
+              <span class="feature-tag">Enterprise Ready</span>
+              <span class="feature-tag">TypeScript First</span>
+              <span class="feature-tag">Full Framework</span>
+            </div>
+          </div>
+
+          <div class="decision-card">
+            <div class="decision-icon">⚡</div>
+            <h3>Performance Critical?</h3>
+            <p>Building apps where every millisecond matters? Need the smallest bundle sizes and fastest runtime performance?</p>
+            <div class="recommended-framework">Recommended: Svelte</div>
+            <div class="framework-features">
+              <span class="feature-tag">No Runtime</span>
+              <span class="feature-tag">Tiny Bundles</span>
+              <span class="feature-tag">Fast Performance</span>
+            </div>
+          </div>
+
+          <div class="decision-card">
+            <div class="decision-icon">💼</div>
+            <h3>Job Market Priority?</h3>
+            <p>Want to maximize career opportunities? Looking for the framework with the most job openings and highest demand?</p>
+            <div class="recommended-framework">Recommended: React</div>
+            <div class="framework-features">
+              <span class="feature-tag">High Demand</span>
+              <span class="feature-tag">Huge Community</span>
+              <span class="feature-tag">Transferable Skills</span>
+            </div>
+          </div>
+
+          <div class="decision-card">
+            <div class="decision-icon">🌐</div>
+            <h3>SEO Important?</h3>
+            <p>Building content-heavy sites or e-commerce? Need server-side rendering and optimal SEO performance out of the box?</p>
+            <div class="recommended-framework">Recommended: Next.js / Nuxt.js</div>
+            <div class="framework-features">
+              <span class="feature-tag">SSR/SSG</span>
+              <span class="feature-tag">SEO Optimized</span>
+              <span class="feature-tag">Production Ready</span>
+            </div>
+          </div>
+
+          <div class="decision-card">
+            <div class="decision-icon">🚀</div>
+            <h3>Move Fast & Ship?</h3>
+            <p>Need to build and deploy quickly? Want minimal configuration with maximum productivity from day one?</p>
+            <div class="recommended-framework">Recommended: Vue.js / Nuxt.js</div>
+            <div class="framework-features">
+              <span class="feature-tag">Fast Development</span>
+              <span class="feature-tag">Convention Based</span>
+              <span class="feature-tag">Zero Config</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="learning-paths">
+      <div class="paths-container">
+        <div class="section-header">
+          <h2>Your Learning Roadmap</h2>
+          <p>A step-by-step guide to mastering your chosen framework, from beginner to production-ready developer.</p>
+        </div>
+        
+        <div class="path-timeline">
+          <div class="timeline-item">
+            <div class="timeline-number">1</div>
+            <div class="timeline-content-wrapper">
+              <div class="timeline-content">
+                <h4>🎯 Foundation First</h4>
+                <p>Master JavaScript fundamentals, ES6+ features, and basic HTML/CSS. Understanding these core technologies is crucial before diving into any framework.</p>
+              </div>
+              <div class="timeline-content">
+                <h4>📚 Framework Basics</h4>
+                <p>Learn your chosen framework's core concepts: components, state management, and event handling. Build simple projects to solidify understanding.</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-number">2</div>
+            <div class="timeline-content-wrapper">
+              <div class="timeline-content">
+                <h4>🛠️ Tooling & Setup</h4>
+                <p>Master the development environment: CLI tools, bundlers, and development servers. Learn debugging techniques and developer tools.</p>
+              </div>
+              <div class="timeline-content">
+                <h4>🏗️ Architecture Patterns</h4>
+                <p>Understand component architecture, state management patterns, and how to structure larger applications for maintainability.</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-number">3</div>
+            <div class="timeline-content-wrapper">
+              <div class="timeline-content">
+                <h4>🧪 Testing & Quality</h4>
+                <p>Learn testing strategies: unit tests, integration tests, and end-to-end testing. Implement code quality tools and best practices.</p>
+              </div>
+              <div class="timeline-content">
+                <h4>🚀 Production Ready</h4>
+                <p>Master deployment, performance optimization, monitoring, and maintenance. Learn to build applications that scale in production.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="resources-section">
+      <div class="resources-container">
+        <h2 style="font-size: 3rem; margin-bottom: 2rem; font-weight: 800;">Continue Your Journey</h2>
+        <p style="font-size: 1.2rem; margin-bottom: 3rem; opacity: 0.9;">Access our complete collection of resources, tutorials, and tools to accelerate your framework mastery.</p>
+        
+        <div class="resources-grid">
+          <div class="resource-card">
+            <span class="resource-icon">📖</span>
+            <h4>Complete Tutorials</h4>
+            <p>Step-by-step tutorials for each framework, from hello world to production deployment. Learn by building real projects.</p>
+          </div>
+
+          <div class="resource-card">
+            <span class="resource-icon">🎥</span>
+            <h4>Video Courses</h4>
+            <p>Premium video content with expert instructors. Visual learning for complex concepts and advanced techniques.</p>
+          </div>
+
+          <div class="resource-card">
+            <span class="resource-icon">🛠️</span>
+            <h4>Starter Templates</h4>
+            <p>Production-ready templates and boilerplates. Skip the setup and start building your application immediately.</p>
+          </div>
+
+          <div class="resource-card">
+            <span class="resource-icon">💡</span>
+            <h4>Best Practices</h4>
+            <p>Industry-proven patterns and practices. Learn from experienced developers and avoid common pitfalls.</p>
+          </div>
+
+          <div class="resource-card">
+            <span class="resource-icon">🤝</span>
+            <h4>Community Access</h4>
+            <p>Join our developer community. Get help, share projects, and connect with other framework enthusiasts.</p>
+          </div>
+
+          <div class="resource-card">
+            <span class="resource-icon">📊</span>
+            <h4>Performance Tools</h4>
+            <p>Optimization guides and performance monitoring tools. Build fast applications that users love.</p>
+          </div>
+        </div>
+        
+        <div style="margin-top: 3rem;">
+          <button class="btn guide-style" onclick="alert('🎯 Welcome to the framework mastery program!')" style="font-size: 1.2rem; padding: 1.2rem 3rem;">Start Your Framework Journey</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    console.log('Tell Me More Tech - Framework Guide loaded! Choose your path! 🚀');
+  </script>
+</body>
+</html>

@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>
+			Advanced JavaScript Patterns and Best Practices - Tell Me More Tech
+		</title>
+		<link rel="stylesheet" href="css/javascript_patterns_article.css" />
+	</head>
+	<body>
+		<header class="site-header">
+			<a href="tellmemore_tech_site.html" class="logo"
+				>Tell Me More <span>Tech</span></a
+			>
+			<nav>
+				<ul>
+					<li><a href="frameworks.html">Frameworks</a></li>
+					<li>
+						<a href="dev_tools.html">Dev Tools</a>
+					</li>
+					<li>
+						<a href="resources_page.html">Resources</a>
+					</li>
+					<li>
+						<a href="all_articles.html">All Articles</a>
+					</li>
+				</ul>
+			</nav>
+			<a href="dev_tips.html" class="btn primary">Free Dev Tips</a>
+		</header>
+
+		<div class="article-header">
+			<div class="header-content">
+				<h1 class="article-title">
+					Advanced JavaScript Patterns and Best Practices
+				</h1>
+
+				<div class="article-meta">
+					<div class="author">
+						<div class="author-avatar">KP</div>
+						<div class="author-info">
+							<h4>Kevin Park</h4>
+							<p>Senior JavaScript Engineer</p>
+						</div>
+					</div>
+
+					<div class="article-stats">
+						<span>11 min read</span>
+						<span>•</span>
+						<span>July 30, 2025</span>
+						<span>•</span>
+						<span>Advanced Level</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<main class="main-content">
+			<article class="article-body">
+				<div class="article-intro">
+					Modern JavaScript development demands more than basic syntax
+					knowledge. As applications grow in complexity, the patterns and
+					practices you choose can make the difference between maintainable,
+					performant code and a tangled mess that haunts your team for years.
+					This comprehensive guide explores battle-tested patterns that have
+					emerged from real-world JavaScript development, focusing on practical
+					applications rather than theoretical concepts.
+				</div>
+
+				<section id="module-patterns">
+					<h2 class="section-heading">Module Patterns and Encapsulation</h2>
+
+					<p>
+						The foundation of scalable JavaScript lies in proper module
+						organization. While ES6 modules are now standard, understanding
+						various module patterns helps you choose the right approach for
+						different scenarios.
+					</p>
+
+					<div class="pattern-card">
+						<h3 class="pattern-title">Revealing Module Pattern</h3>
+						<p>
+							This pattern provides a clean way to encapsulate private
+							functionality while exposing a public API. It's particularly
+							useful when you need fine-grained control over what gets exposed.
+						</p>
+
+						<div class="code-block">
+							<span class="keyword">const</span>
+							<span class="function">UserManager</span> = (<span class="keyword"
+								>function</span
+							>() {
+							<span class="comment">// Private variables and methods</span>
+							<span class="keyword">let</span> users = [];
+							<span class="keyword">let</span> currentId = 1;
+
+							<span class="keyword">function</span>
+							<span class="function">validateUser</span>(user) {
+							<span class="keyword">return</span> user.email && user.name &&
+							user.email.includes(<span class="string">'@'</span>); }
+
+							<span class="keyword">function</span>
+							<span class="function">generateId</span>() {
+							<span class="keyword">return</span> currentId++; }
+
+							<span class="comment">// Public API</span>
+							<span class="keyword">return</span> {
+							<span class="function">addUser</span>(userData) {
+							<span class="keyword">if</span> (!validateUser(userData)) {
+							<span class="keyword">throw new</span>
+							<span class="function">Error</span>(<span class="string"
+								>'Invalid user data'</span
+							>); }
+
+							<span class="keyword">const</span> user = { id: generateId(),
+							...userData, createdAt: <span class="keyword">new</span>
+							<span class="function">Date</span>() }; users.push(user);
+							<span class="keyword">return</span> user; },
+
+							<span class="function">getUser</span>(id) {
+							<span class="keyword">return</span> users.find(user => user.id ===
+							id); },
+
+							<span class="function">getUserCount</span>() {
+							<span class="keyword">return</span> users.length; } }; })();
+						</div>
+
+						<div class="pros-cons">
+							<div class="pros">
+								<h4>Advantages</h4>
+								<ul>
+									<li>True privacy - internal methods cannot be accessed</li>
+									<li>Clean separation of concerns</li>
+									<li>Prevents global namespace pollution</li>
+									<li>Easy to test public interface</li>
+								</ul>
+							</div>
+							<div class="cons">
+								<h4>Considerations</h4>
+								<ul>
+									<li>Cannot be easily extended or subclassed</li>
+									<li>Every instance gets its own copy of methods</li>
+									<li>Debugging private methods can be challenging</li>
+									<li>Memory usage increases with instances</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section id="async-patterns">
+					<h2 class="section-heading">Advanced Async Patterns</h2>
+
+					<p>
+						Handling asynchronous operations efficiently is crucial for modern
+						JavaScript applications. Beyond basic Promise usage, several
+						patterns can help manage complex async flows.
+					</p>
+
+					<div class="pattern-card">
+						<h3 class="pattern-title">Promise Pool Pattern</h3>
+						<p>
+							When dealing with many async operations, running them all
+							concurrently can overwhelm servers or APIs. A promise pool limits
+							concurrency while maintaining efficiency.
+						</p>
+
+						<div class="code-block">
+							<span class="keyword">class</span>
+							<span class="function">PromisePool</span> {
+							<span class="keyword">constructor</span>(concurrency = 3) {
+							<span class="keyword">this</span>.concurrency = concurrency;
+							<span class="keyword">this</span>.running = [];
+							<span class="keyword">this</span>.queue = []; }
+
+							<span class="keyword">async</span>
+							<span class="function">add</span>(promiseFunction) {
+							<span class="keyword">return new</span>
+							<span class="function">Promise</span>((resolve, reject) => {
+							<span class="keyword">this</span>.queue.push({ promiseFunction,
+							resolve, reject });
+
+							<span class="keyword">this</span>.process(); }); }
+
+							<span class="keyword">async</span>
+							<span class="function">process</span>() {
+							<span class="keyword">if</span> (<span class="keyword">this</span
+							>.running.length >= <span class="keyword">this</span>.concurrency
+							|| <span class="keyword">this</span>.queue.length === 0) {
+							<span class="keyword">return</span>; }
+
+							<span class="keyword">const</span> { promiseFunction, resolve,
+							reject } = <span class="keyword">this</span>.queue.shift();
+
+							<span class="keyword">const</span> promise = promiseFunction()
+							.<span class="function">then</span>(resolve) .<span
+								class="function"
+								>catch</span
+							>(reject) .<span class="function">finally</span>(() => {
+							<span class="keyword">this</span>.running =
+							<span class="keyword">this</span>.running.filter(p => p !==
+							promise); <span class="keyword">this</span>.process(); });
+
+							<span class="keyword">this</span>.running.push(promise);
+							<span class="keyword">this</span>.process(); } }
+
+							<span class="comment">// Usage example</span>
+							<span class="keyword">const</span> pool =
+							<span class="keyword">new</span>
+							<span class="function">PromisePool</span>(5);
+							<span class="keyword">const</span> urls = [<span class="string"
+								>'url1'</span
+							>, <span class="string">'url2'</span>,
+							<span class="string">'url3'</span>
+							<span class="comment">/* ... many more */</span>];
+
+							<span class="keyword">const</span> results =
+							<span class="keyword">await</span>
+							<span class="function">Promise.all</span>( urls.map(url =>
+							pool.add(() => <span class="function">fetch</span>(url))) );
+						</div>
+					</div>
+
+					<div class="performance-tip">
+						<strong>Performance Tip:</strong> The optimal concurrency limit
+						depends on your specific use case. For HTTP requests, 5-10
+						concurrent requests often provide the best balance between speed and
+						server stability.
+					</div>
+				</section>
+
+				<section id="memory-patterns">
+					<h2 class="section-heading">Memory Management Patterns</h2>
+
+					<p>
+						JavaScript's garbage collection doesn't eliminate the need for
+						conscious memory management. These patterns help prevent memory
+						leaks and optimize memory usage in long-running applications.
+					</p>
+
+					<div class="pattern-card">
+						<h3 class="pattern-title">Object Pool Pattern</h3>
+						<p>
+							For frequently created and destroyed objects, pooling can
+							significantly reduce garbage collection pressure and improve
+							performance.
+						</p>
+
+						<div class="code-block">
+							<span class="keyword">class</span>
+							<span class="function">ObjectPool</span> {
+							<span class="keyword">constructor</span>(createFn, resetFn,
+							initialSize = 10) { <span class="keyword">this</span>.createFn =
+							createFn; <span class="keyword">this</span>.resetFn = resetFn;
+							<span class="keyword">this</span>.pool = [];
+
+							<span class="comment">// Pre-populate pool</span>
+							<span class="keyword">for</span> (<span class="keyword">let</span>
+							i = 0; i < initialSize; i++) {
+							<span class="keyword">this</span>.pool.push(<span class="keyword"
+								>this</span
+							>.createFn()); } }
+
+							<span class="function">acquire</span>() {
+							<span class="keyword">if</span> (<span class="keyword">this</span
+							>.pool.length > 0) { <span class="keyword">return</span>
+							<span class="keyword">this</span>.pool.pop(); }
+							<span class="keyword">return</span>
+							<span class="keyword">this</span>.createFn(); }
+
+							<span class="function">release</span>(obj) {
+							<span class="keyword">this</span>.resetFn(obj);
+							<span class="keyword">this</span>.pool.push(obj); } }
+
+							<span class="comment">// Example: DOM element pool</span>
+							<span class="keyword">const</span> divPool =
+							<span class="keyword">new</span>
+							<span class="function">ObjectPool</span>( () =>
+							<span class="function">document.createElement</span>(<span
+								class="string"
+								>'div'</span
+							>), (div) => { div.innerHTML = <span class="string">''</span>;
+							div.className = <span class="string">''</span>;
+							div.removeAttribute(<span class="string">'style'</span>); } );
+						</div>
+
+						<div class="best-practice">
+							<strong>Best Practice:</strong> Object pools work best for
+							expensive-to-create objects that are frequently needed. Don't pool
+							simple objects like plain JavaScript objects or strings - the
+							overhead isn't worth it.
+						</div>
+					</div>
+				</section>
+
+				<section id="functional-patterns">
+					<h2 class="section-heading">Functional Programming Patterns</h2>
+
+					<p>
+						Functional programming concepts can make JavaScript code more
+						predictable and easier to test. These patterns emphasize
+						immutability and pure functions.
+					</p>
+
+					<div class="pattern-card">
+						<h3 class="pattern-title">Lens Pattern for Immutable Updates</h3>
+						<p>
+							Lenses provide a functional way to get and set values in deeply
+							nested objects without mutation.
+						</p>
+
+						<div class="code-block">
+							<span class="keyword">const</span>
+							<span class="function">lens</span> = (getter, setter) => ({ get:
+							getter, set: setter, <span class="function">modify</span>(fn, obj)
+							{ <span class="keyword">return</span> setter(fn(getter(obj)),
+							obj); } });
+
+							<span class="keyword">const</span>
+							<span class="function">prop</span> = (key) =>
+							<span class="function">lens</span>( obj => obj[key], (val, obj) =>
+							({ ...obj, [key]: val }) );
+
+							<span class="keyword">const</span>
+							<span class="function">path</span> = (keys) =>
+							<span class="function">lens</span>( obj => keys.reduce((acc, key)
+							=> acc && acc[key], obj), (val, obj) => {
+							<span class="keyword">const</span> [head, ...tail] = keys;
+							<span class="keyword">if</span> (tail.length === 0) {
+							<span class="keyword">return</span> { ...obj, [head]: val }; }
+							<span class="keyword">return</span> { ...obj, [head]:
+							<span class="function">path</span>(tail).set(val, obj[head] || {})
+							}; } );
+
+							<span class="comment">// Usage</span>
+							<span class="keyword">const</span> user = { profile: { contact: {
+							email: <span class="string">'old@email.com'</span>
+							} } };
+
+							<span class="keyword">const</span> emailLens =
+							<span class="function">path</span>([<span class="string"
+								>'profile'</span
+							>, <span class="string">'contact'</span>,
+							<span class="string">'email'</span>]);
+							<span class="keyword">const</span> updatedUser =
+							emailLens.set(<span class="string">'new@email.com'</span>, user);
+						</div>
+					</div>
+
+					<div class="warning">
+						<strong>Important:</strong> While functional patterns can improve
+						code quality, they may have performance implications in JavaScript.
+						Profile your code and consider hybrid approaches for
+						performance-critical sections.
+					</div>
+				</section>
+
+				<section id="error-handling">
+					<h2 class="section-heading">Robust Error Handling Patterns</h2>
+
+					<p>
+						Proper error handling is often overlooked but critical for
+						production applications. These patterns help create resilient
+						applications that gracefully handle failures.
+					</p>
+
+					<div class="pattern-card">
+						<h3 class="pattern-title">Result Pattern</h3>
+						<p>
+							Instead of throwing exceptions, return success/failure objects
+							that force explicit error handling.
+						</p>
+
+						<div class="code-block">
+							<span class="keyword">class</span>
+							<span class="function">Result</span> {
+							<span class="keyword">constructor</span>(success, value, error) {
+							<span class="keyword">this</span>.success = success;
+							<span class="keyword">this</span>.value = value;
+							<span class="keyword">this</span>.error = error; }
+
+							<span class="keyword">static</span>
+							<span class="function">ok</span>(value) {
+							<span class="keyword">return new</span>
+							<span class="function">Result</span>(<span class="keyword"
+								>true</span
+							>, value, <span class="keyword">null</span>); }
+
+							<span class="keyword">static</span>
+							<span class="function">err</span>(error) {
+							<span class="keyword">return new</span>
+							<span class="function">Result</span>(<span class="keyword"
+								>false</span
+							>, <span class="keyword">null</span>, error); }
+
+							<span class="function">map</span>(fn) {
+							<span class="keyword">return</span>
+							<span class="keyword">this</span>.success ?
+							<span class="function">Result.ok</span>(fn(<span class="keyword"
+								>this</span
+							>.value)) : <span class="keyword">this</span>; }
+
+							<span class="function">flatMap</span>(fn) {
+							<span class="keyword">return</span>
+							<span class="keyword">this</span>.success ? fn(<span
+								class="keyword"
+								>this</span
+							>.value) : <span class="keyword">this</span>; }
+
+							<span class="function">mapError</span>(fn) {
+							<span class="keyword">return</span>
+							<span class="keyword">this</span>.success ?
+							<span class="keyword">this</span> :
+							<span class="function">Result.err</span>(fn(<span class="keyword"
+								>this</span
+							>.error)); } }
+
+							<span class="comment">// Usage</span>
+							<span class="keyword">function</span>
+							<span class="function">parseJSON</span>(str) {
+							<span class="keyword">try</span> {
+							<span class="keyword">return</span>
+							<span class="function">Result.ok</span>(<span class="function"
+								>JSON.parse</span
+							>(str)); } <span class="keyword">catch</span> (error) {
+							<span class="keyword">return</span>
+							<span class="function">Result.err</span>(error.message); } }
+
+							<span class="keyword">const</span> result =
+							<span class="function">parseJSON</span>(<span class="string"
+								>'{"name": "John"}'</span
+							>) .<span class="function">map</span>(data => data.name) .<span
+								class="function"
+								>map</span
+							>(name => name.toUpperCase());
+
+							<span class="keyword">if</span> (result.success) {
+							<span class="function">console.log</span>(<span class="string"
+								>'Name:'</span
+							>, result.value); } <span class="keyword">else</span> {
+							<span class="function">console.error</span>(<span class="string"
+								>'Error:'</span
+							>, result.error); }
+						</div>
+					</div>
+				</section>
+
+				<section id="performance-optimization">
+					<h2 class="section-heading">Performance Optimization Patterns</h2>
+
+					<p>
+						These patterns help optimize JavaScript performance, particularly
+						important for client-side applications and high-traffic servers.
+					</p>
+
+					<div class="pattern-card">
+						<h3 class="pattern-title">Memoization with TTL</h3>
+						<p>
+							Enhance basic memoization with time-to-live functionality to
+							prevent memory leaks from cache growth.
+						</p>
+
+						<div class="code-block">
+							<span class="keyword">function</span>
+							<span class="function">memoizeWithTTL</span>(fn, ttl = 60000) {
+							<span class="keyword">const</span> cache =
+							<span class="keyword">new</span>
+							<span class="function">Map</span>();
+
+							<span class="keyword">return</span>
+							<span class="keyword">function</span>(...args) {
+							<span class="keyword">const</span> key =
+							<span class="function">JSON.stringify</span>(args);
+							<span class="keyword">const</span> now =
+							<span class="function">Date.now</span>();
+
+							<span class="keyword">if</span> (cache.has(key)) {
+							<span class="keyword">const</span> { value, timestamp } =
+							cache.get(key); <span class="keyword">if</span> (now - timestamp <
+							ttl) { <span class="keyword">return</span> value; }
+							cache.delete(key); }
+
+							<span class="keyword">const</span> result = fn.apply(<span
+								class="keyword"
+								>this</span
+							>, args); cache.set(key, { value: result, timestamp: now });
+
+							<span class="comment"
+								>// Cleanup expired entries periodically</span
+							>
+							<span class="keyword">if</span> (cache.size > 100) {
+							<span class="keyword">for</span> (<span class="keyword"
+								>const</span
+							>
+							[cacheKey, entry] <span class="keyword">of</span> cache.entries())
+							{ <span class="keyword">if</span> (now - entry.timestamp >= ttl) {
+							cache.delete(cacheKey); } } }
+
+							<span class="keyword">return</span> result; }; }
+
+							<span class="comment">// Usage example</span>
+							<span class="keyword">const</span> expensiveCalculation =
+							<span class="function">memoizeWithTTL</span>((x, y) => {
+							<span class="function">console.log</span>(<span class="string"
+								>'Computing...'</span
+							>); <span class="keyword">return</span> Math.pow(x, y); }, 30000);
+							<span class="comment">// 30 second TTL</span>
+						</div>
+					</div>
+
+					<div class="pattern-card">
+						<h3 class="pattern-title">Debounce and Throttle Patterns</h3>
+						<p>
+							Essential for handling high-frequency events like scrolling,
+							resizing, or user input.
+						</p>
+
+						<div class="code-block">
+							<span class="comment"
+								>// Debounce - waits for quiet period before executing</span
+							>
+							<span class="keyword">function</span>
+							<span class="function">debounce</span>(func, delay) {
+							<span class="keyword">let</span> timeoutId;
+
+							<span class="keyword">return</span>
+							<span class="keyword">function</span>(...args) {
+							<span class="keyword">const</span> context =
+							<span class="keyword">this</span>;
+
+							<span class="function">clearTimeout</span>(timeoutId); timeoutId =
+							<span class="function">setTimeout</span>(() => {
+							func.apply(context, args); }, delay); }; }
+
+							<span class="comment"
+								>// Throttle - executes at most once per interval</span
+							>
+							<span class="keyword">function</span>
+							<span class="function">throttle</span>(func, limit) {
+							<span class="keyword">let</span> inThrottle;
+
+							<span class="keyword">return</span>
+							<span class="keyword">function</span>(...args) {
+							<span class="keyword">const</span> context =
+							<span class="keyword">this</span>;
+
+							<span class="keyword">if</span> (!inThrottle) {
+							func.apply(context, args); inThrottle =
+							<span class="keyword">true</span>;
+							<span class="function">setTimeout</span>(() => inThrottle =
+							<span class="keyword">false</span>, limit); } }; }
+
+							<span class="comment"
+								>// Advanced: Leading and trailing throttle</span
+							>
+							<span class="keyword">function</span>
+							<span class="function">throttleAdvanced</span>(func, limit, {
+							leading = <span class="keyword">true</span>, trailing =
+							<span class="keyword">true</span> } = {}) {
+							<span class="keyword">let</span> timeout;
+							<span class="keyword">let</span> previous = 0;
+							<span class="keyword">let</span> result;
+
+							<span class="keyword">const</span> later =
+							<span class="keyword">function</span>(context, args) { previous =
+							leading === <span class="keyword">false</span> ? 0 :
+							<span class="function">Date.now</span>(); timeout =
+							<span class="keyword">null</span>; result = func.apply(context,
+							args); };
+
+							<span class="keyword">return</span>
+							<span class="keyword">function</span>(...args) {
+							<span class="keyword">const</span> now =
+							<span class="function">Date.now</span>();
+
+							<span class="keyword">if</span> (!previous && leading ===
+							<span class="keyword">false</span>) previous = now;
+
+							<span class="keyword">const</span> remaining = limit - (now -
+							previous);
+
+							<span class="keyword">if</span> (remaining <= 0 || remaining >
+							limit) { <span class="keyword">if</span> (timeout) {
+							<span class="function">clearTimeout</span>(timeout); timeout =
+							<span class="keyword">null</span>; } previous = now; result =
+							func.apply(<span class="keyword">this</span>, args); }
+							<span class="keyword">else if</span> (!timeout && trailing !==
+							<span class="keyword">false</span>) { timeout =
+							<span class="function">setTimeout</span>(() => later(<span
+								class="keyword"
+								>this</span
+							>, args), remaining); }
+
+							<span class="keyword">return</span> result; }; }
+						</div>
+
+						<div class="performance-tip">
+							<strong>Performance Tip:</strong> Use debounce for search inputs
+							and resize handlers. Use throttle for scroll events and mouse
+							movements. The optimal delay depends on your use case - start with
+							300ms for debounce and 100ms for throttle.
+						</div>
+					</div>
+				</section>
+
+				<section id="design-patterns">
+					<h2 class="section-heading">Modern Design Patterns</h2>
+
+					<p>
+						Classic design patterns adapted for modern JavaScript, taking
+						advantage of ES6+ features and functional programming concepts.
+					</p>
+
+					<div class="pattern-card">
+						<h3 class="pattern-title">Observer Pattern with Weak References</h3>
+						<p>
+							Prevent memory leaks in the observer pattern by using WeakSet for
+							observer storage.
+						</p>
+
+						<div class="code-block">
+							<span class="keyword">class</span>
+							<span class="function">EventEmitter</span> {
+							<span class="keyword">constructor</span>() {
+							<span class="keyword">this</span>.events =
+							<span class="keyword">new</span>
+							<span class="function">Map</span>(); }
+
+							<span class="function">on</span>(event, callback, context =
+							<span class="keyword">null</span>) {
+							<span class="keyword">if</span> (!<span class="keyword">this</span
+							>.events.has(event)) {
+							<span class="keyword">this</span>.events.set(event,
+							<span class="keyword">new</span>
+							<span class="function">WeakSet</span>()); }
+
+							<span class="keyword">const</span> listener = { callback, context
+							};
+							<span class="keyword">this</span>.events.get(event).add(listener);
+
+							<span class="comment">// Return unsubscribe function</span>
+							<span class="keyword">return</span> () =>
+							<span class="keyword">this</span>.off(event, listener); }
+
+							<span class="function">emit</span>(event, ...args) {
+							<span class="keyword">if</span> (!<span class="keyword">this</span
+							>.events.has(event)) <span class="keyword">return</span>;
+
+							<span class="keyword">const</span> listeners =
+							<span class="keyword">this</span>.events.get(event);
+							<span class="comment"
+								>// Note: WeakSet doesn't have iteration, so we'd need a
+								different approach</span
+							>
+							<span class="comment"
+								>// This is a conceptual example - in practice, you'd use Map
+								with cleanup</span
+							>
+							}
+
+							<span class="function">off</span>(event, listener) {
+							<span class="keyword">if</span> (<span class="keyword">this</span
+							>.events.has(event)) {
+							<span class="keyword">this</span
+							>.events.get(event).delete(listener); } } }
+
+							<span class="comment"
+								>// Better implementation using Map with automatic cleanup</span
+							>
+							<span class="keyword">class</span>
+							<span class="function">SmartEventEmitter</span> {
+							<span class="keyword">constructor</span>() {
+							<span class="keyword">this</span>.listeners =
+							<span class="keyword">new</span>
+							<span class="function">Map</span>();
+							<span class="keyword">this</span>.listenerRefs =
+							<span class="keyword">new</span>
+							<span class="function">WeakMap</span>(); }
+
+							<span class="function">on</span>(event, callback, target =
+							<span class="keyword">null</span>) {
+							<span class="keyword">if</span> (!<span class="keyword">this</span
+							>.listeners.has(event)) {
+							<span class="keyword">this</span>.listeners.set(event, []); }
+
+							<span class="keyword">const</span> listener = { callback, target,
+							active: <span class="keyword">true</span> };
+							<span class="keyword">this</span
+							>.listeners.get(event).push(listener);
+
+							<span class="keyword">if</span> (target) {
+							<span class="keyword">if</span> (!<span class="keyword">this</span
+							>.listenerRefs.has(target)) {
+							<span class="keyword">this</span>.listenerRefs.set(target, []); }
+							<span class="keyword">this</span
+							>.listenerRefs.get(target).push(listener); }
+
+							<span class="keyword">return</span> () => { listener.active =
+							<span class="keyword">false</span>;
+							<span class="keyword">this</span>.cleanup(); }; }
+
+							<span class="function">emit</span>(event, ...args) {
+							<span class="keyword">const</span> listeners =
+							<span class="keyword">this</span>.listeners.get(event);
+							<span class="keyword">if</span> (!listeners)
+							<span class="keyword">return</span>; listeners .filter(listener =>
+							listener.active) .forEach(listener => {
+							<span class="keyword">try</span> {
+							listener.callback.call(listener.target, ...args); }
+							<span class="keyword">catch</span> (error) {
+							<span class="function">console.error</span>(<span class="string"
+								>'Event listener error:'</span
+							>, error); } }); }
+
+							<span class="function">cleanup</span>() {
+							<span class="keyword">this</span>.listeners.forEach((listeners,
+							event) => { <span class="keyword">const</span> active =
+							listeners.filter(l => l.active);
+							<span class="keyword">if</span> (active.length === 0) {
+							<span class="keyword">this</span>.listeners.delete(event); }
+							<span class="keyword">else</span> {
+							<span class="keyword">this</span>.listeners.set(event, active); }
+							}); } }
+						</div>
+					</div>
+				</section>
+
+				<section id="testing-patterns">
+					<h2 class="section-heading">Testing and Debugging Patterns</h2>
+
+					<p>
+						Writing testable JavaScript requires specific patterns that separate
+						concerns and make code predictable.
+					</p>
+
+					<div class="pattern-card">
+						<h3 class="pattern-title">Dependency Injection Pattern</h3>
+						<p>
+							Make dependencies explicit to improve testability and flexibility.
+						</p>
+
+						<div class="code-block">
+							<span class="keyword">class</span>
+							<span class="function">UserService</span> {
+							<span class="keyword">constructor</span>(dependencies = {}) {
+							<span class="keyword">this</span>.httpClient =
+							dependencies.httpClient || <span class="keyword">new</span>
+							<span class="function">HttpClient</span>();
+							<span class="keyword">this</span>.cache = dependencies.cache ||
+							<span class="keyword">new</span>
+							<span class="function">Cache</span>();
+							<span class="keyword">this</span>.logger = dependencies.logger ||
+							<span class="function">console</span>; }
+
+							<span class="keyword">async</span>
+							<span class="function">getUser</span>(id) {
+							<span class="keyword">const</span> cacheKey =
+							<span class="string">`user:${id}`</span>;
+
+							<span class="keyword">try</span> {
+							<span class="comment">// Check cache first</span>
+							<span class="keyword">const</span> cached =
+							<span class="keyword">await</span>
+							<span class="keyword">this</span>.cache.get(cacheKey);
+							<span class="keyword">if</span> (cached) {
+							<span class="keyword">this</span>.logger.debug(<span
+								class="string"
+								>'Cache hit for user:'</span
+							>, id); <span class="keyword">return</span> cached; }
+
+							<span class="comment">// Fetch from API</span>
+							<span class="keyword">const</span> user =
+							<span class="keyword">await</span>
+							<span class="keyword">this</span>.httpClient.get(<span
+								class="string"
+								>`/users/${id}`</span
+							>);
+
+							<span class="comment">// Cache the result</span>
+							<span class="keyword">await</span>
+							<span class="keyword">this</span>.cache.set(cacheKey, user, { ttl:
+							300000 });
+
+							<span class="keyword">return</span> user; }
+							<span class="keyword">catch</span> (error) {
+							<span class="keyword">this</span>.logger.error(<span
+								class="string"
+								>'Failed to get user:'</span
+							>, error); <span class="keyword">throw</span>
+							<span class="keyword">new</span>
+							<span class="function">Error</span>(<span class="string"
+								>`Unable to fetch user ${id}`</span
+							>); } } }
+
+							<span class="comment">// Easy to test with mocks</span>
+							<span class="keyword">const</span> mockHttpClient = {
+							<span class="keyword">async</span>
+							<span class="function">get</span>(url) {
+							<span class="keyword">return</span> { id: 1, name:
+							<span class="string">'Test User'</span> }; } };
+
+							<span class="keyword">const</span> mockCache = {
+							<span class="keyword">async</span>
+							<span class="function">get</span>(key) {
+							<span class="keyword">return</span>
+							<span class="keyword">null</span>; },
+							<span class="keyword">async</span>
+							<span class="function">set</span>(key, value, options) {
+							<span class="keyword">return</span>
+							<span class="keyword">true</span>; } };
+
+							<span class="keyword">const</span> userService =
+							<span class="keyword">new</span>
+							<span class="function">UserService</span>({ httpClient:
+							mockHttpClient, cache: mockCache, logger: { debug: () => {},
+							error: () => {} } });
+						</div>
+					</div>
+				</section>
+
+				<section id="conclusion">
+					<h2 class="section-heading">Key Takeaways</h2>
+
+					<p>
+						Advanced JavaScript patterns are tools to solve specific problems.
+						The key is knowing when and how to apply them:
+					</p>
+
+					<div class="best-practice">
+						<strong>Pattern Selection Guidelines:</strong>
+						<ul style="margin-top: 1rem; margin-left: 2rem">
+							<li>
+								<strong>Start simple</strong> - Don't over-engineer solutions.
+								Use patterns when they solve real problems.
+							</li>
+							<li>
+								<strong>Consider performance</strong> - Some patterns have
+								overhead. Profile your code in production-like conditions.
+							</li>
+							<li>
+								<strong>Think about maintenance</strong> - Complex patterns can
+								make code harder to understand for other developers.
+							</li>
+							<li>
+								<strong>Test thoroughly</strong> - Patterns often introduce
+								indirection, making bugs harder to find.
+							</li>
+						</ul>
+					</div>
+
+					<p>
+						The JavaScript ecosystem evolves rapidly. What's considered a best
+						practice today might be superseded by new language features
+						tomorrow. Stay curious, keep learning, and always validate patterns
+						against your specific use cases.
+					</p>
+
+					<div class="performance-tip">
+						<strong>Remember:</strong> The best pattern is the one that solves
+						your problem clearly and efficiently. Don't use patterns just
+						because they're advanced - use them because they're appropriate.
+					</div>
+				</section>
+			</article>
+
+			<aside class="sidebar">
+				<nav class="toc">
+					<h3>Table of Contents</h3>
+					<ul>
+						<li><a href="#module-patterns">Module Patterns</a></li>
+						<li><a href="#async-patterns">Async Patterns</a></li>
+						<li><a href="#memory-patterns">Memory Management</a></li>
+						<li><a href="#functional-patterns">Functional Programming</a></li>
+						<li><a href="#error-handling">Error Handling</a></li>
+						<li>
+							<a href="#performance-optimization">Performance Optimization</a>
+						</li>
+						<li><a href="#design-patterns">Design Patterns</a></li>
+						<li><a href="#testing-patterns">Testing Patterns</a></li>
+						<li><a href="#conclusion">Key Takeaways</a></li>
+					</ul>
+				</nav>
+
+				<div class="related-articles">
+					<h3>Related Articles</h3>
+
+					<article class="related-article">
+						<h4>Building Production-Ready APIs with Node.js</h4>
+						<p>
+							Learn how to apply these patterns in real-world API development
+							with practical examples and deployment strategies.
+						</p>
+					</article>
+
+					<article class="related-article">
+						<h4>React vs Vue: The Complete 2025 Guide</h4>
+						<p>
+							See how these JavaScript patterns apply to modern framework
+							development and component architecture.
+						</p>
+					</article>
+
+					<article class="related-article">
+						<h4>Debugging Like a Pro: Tools and Mindsets</h4>
+						<p>
+							Master debugging techniques that work especially well with the
+							patterns covered in this article.
+						</p>
+					</article>
+				</div>
+			</aside>
+		</main>
+
+		<script src="scripts/javascript_pattern_article.js"></script>
+	</body>
+</html>

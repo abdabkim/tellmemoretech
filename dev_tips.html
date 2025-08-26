@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Dev Tips - Tell Me More Tech</title>
+    <link rel="stylesheet" href="css/dev_tips.css"/>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <h1>Free Developer Tips</h1>
+            <p>Practical insights, code snippets, and best practices to level up your development skills</p><br>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="tips-grid">
+            <div class="tip-card">
+                <div class="tip-category">JavaScript</div>
+                <h3 class="tip-title">Use Optional Chaining for Safer Object Access</h3>
+                <div class="tip-content">
+                    <p>Stop defensive coding with lengthy null checks. Optional chaining (?.) safely accesses nested object properties without throwing errors when intermediate values are null or undefined.</p>
+                    
+                    <div class="code-snippet" data-lang="js">
+// Instead of this defensive approach
+if (user && user.profile && user.profile.contact) {
+    console.log(user.profile.contact.email);
+}
+
+// Use optional chaining
+console.log(user?.profile?.contact?.email);
+
+// Works with arrays and function calls too
+const firstPost = user?.posts?.[0]?.title;
+const result = api?.getData?.();
+                    </div>
+
+                    <div class="practical-example">
+                        This is especially useful when working with API responses where data structure might vary or when properties might be missing in different user states.
+                    </div>
+                </div>
+                <div class="tip-tags">
+                    <span class="tag">ES2020</span>
+                    <span class="tag">Safety</span>
+                    <span class="tag">Clean Code</span>
+                </div>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-category">CSS</div>
+                <h3 class="tip-title">Master CSS Grid for Complex Layouts</h3>
+                <div class="tip-content">
+                    <p>CSS Grid isn't just for simple grids. Use named grid areas and implicit grids to create complex, responsive layouts with minimal code.</p>
+                    
+                    <div class="code-snippet" data-lang="css">
+.dashboard {
+    display: grid;
+    grid-template-areas: 
+        "header header header"
+        "sidebar main aside"
+        "footer footer footer";
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 250px 1fr 200px;
+    min-height: 100vh;
+    gap: 1rem;
+}
+
+.header { grid-area: header; }
+.sidebar { grid-area: sidebar; }
+.main { grid-area: main; }
+.aside { grid-area: aside; }
+.footer { grid-area: footer; }
+
+/* Responsive adjustment */
+@media (max-width: 768px) {
+    .dashboard {
+        grid-template-areas: 
+            "header"
+            "main"
+            "sidebar"
+            "aside"
+            "footer";
+        grid-template-columns: 1fr;
+    }
+}
+                    </div>
+
+                    <div class="pro-tip">
+                        Named grid areas make your layout intentions crystal clear and easy to modify. They're much more maintainable than numeric line references.
+                    </div>
+                </div>
+                <div class="tip-tags">
+                    <span class="tag">Layout</span>
+                    <span class="tag">Responsive</span>
+                    <span class="tag">Modern CSS</span>
+                </div>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-category">Performance</div>
+                <h3 class="tip-title">Debounce Expensive Operations</h3>
+                <div class="tip-content">
+                    <p>Prevent performance issues from rapid user input by debouncing expensive operations like API calls, DOM manipulations, or complex calculations.</p>
+                    
+                    <div class="code-snippet" data-lang="js">
+function debounce(func, delay) {
+    let timeoutId;
+    return (...args) => {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => func.apply(this, args), delay);
+    };
+}
+
+// Debounce search API calls
+const debouncedSearch = debounce(async (query) => {
+    const results = await fetch(`/api/search?q=${query}`);
+    displayResults(await results.json());
+}, 300);
+
+// Use on input events
+searchInput.addEventListener('input', (e) => {
+    debouncedSearch(e.target.value);
+});
+
+// Debounce resize events
+const debouncedResize = debounce(() => {
+    calculateLayout();
+    renderCharts();
+}, 150);
+
+window.addEventListener('resize', debouncedResize);
+                    </div>
+
+                    <div class="practical-example">
+                        Perfect for search-as-you-type features, window resize handlers, and any user input that triggers expensive operations. Saves bandwidth and improves UX.
+                    </div>
+                </div>
+                <div class="tip-tags">
+                    <span class="tag">Optimization</span>
+                    <span class="tag">UX</span>
+                    <span class="tag">API Calls</span>
+                </div>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-category">Git</div>
+                <h3 class="tip-title">Interactive Rebase for Clean History</h3>
+                <div class="tip-content">
+                    <p>Use interactive rebase to clean up your commit history before merging. Squash related commits, fix typos, and reorder changes for better readability.</p>
+                    
+                    <div class="code-snippet" data-lang="bash">
+# Start interactive rebase for last 3 commits
+git rebase -i HEAD~3
+
+# In the editor, you can:
+# pick = keep commit as-is
+# squash = combine with previous commit
+# reword = change commit message
+# edit = stop to modify the commit
+# drop = remove the commit entirely
+
+# Example:
+pick a1b2c3d Add user authentication
+squash e4f5g6h Fix typo in auth function
+reword h7i8j9k Update user profile feature
+
+# After editing, Git will prompt for new commit messages
+# Then push with --force-with-lease to update remote branch
+git push --force-with-lease
+                    </div>
+
+                    <div class="warning-box">
+                        Never rebase commits that have been pushed to shared branches. Only clean up your own feature branches before merging.
+                    </div>
+                </div>
+                <div class="tip-tags">
+                    <span class="tag">Version Control</span>
+                    <span class="tag">Clean History</span>
+                    <span class="tag">Best Practice</span>
+                </div>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-category">React</div>
+                <h3 class="tip-title">Custom Hooks for Logic Reuse</h3>
+                <div class="tip-content">
+                    <p>Extract complex stateful logic into custom hooks to share functionality across components while keeping them clean and focused.</p>
+                    
+                    <div class="code-snippet" data-lang="jsx">
+// Custom hook for API data fetching
+function useApi(url) {
+    const [data, setData] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                setLoading(true);
+                const response = await fetch(url);
+                if (!response.ok) throw new Error('Failed to fetch');
+                const result = await response.json();
+                setData(result);
+            } catch (err) {
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchData();
+    }, [url]);
+
+    return { data, loading, error };
+}
+
+// Use in any component
+function UserProfile({ userId }) {
+    const { data: user, loading, error } = useApi(`/api/users/${userId}`);
+
+    if (loading) return <div>Loading...</div>;
+    if (error) return <div>Error: {error}</div>;
+    
+    return <div>Hello, {user.name}!</div>;
+}
+                    </div>
+
+                    <div class="pro-tip">
+                        Custom hooks can encapsulate any stateful logic: form handling, local storage, timers, websocket connections, or complex state machines.
+                    </div>
+                </div>
+                <div class="tip-tags">
+                    <span class="tag">React</span>
+                    <span class="tag">Reusability</span>
+                    <span class="tag">Clean Code</span>
+                </div>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-category">Node.js</div>
+                <h3 class="tip-title">Environment-Specific Configuration</h3>
+                <div class="tip-content">
+                    <p>Use environment variables and configuration files to manage settings across different deployment environments without code changes.</p>
+                    
+                    <div class="code-snippet" data-lang="js">
+// config.js
+const config = {
+    development: {
+        database: {
+            host: 'localhost',
+            port: 5432,
+            name: 'myapp_dev'
+        },
+        apiUrl: 'http://localhost:3000',
+        logLevel: 'debug'
+    },
+    production: {
+        database: {
+            host: process.env.DB_HOST,
+            port: process.env.DB_PORT || 5432,
+            name: process.env.DB_NAME
+        },
+        apiUrl: process.env.API_URL,
+        logLevel: 'error'
+    },
+    test: {
+        database: {
+            host: 'localhost',
+            port: 5433,
+            name: 'myapp_test'
+        },
+        apiUrl: 'http://localhost:3001',
+        logLevel: 'silent'
+    }
+};
+
+const environment = process.env.NODE_ENV || 'development';
+module.exports = config[environment];
+
+// Usage in your app
+const config = require('./config');
+console.log(`Connecting to ${config.database.host}`);
+                    </div>
+
+                    <div class="practical-example">
+                        Create a .env file for local development and set environment variables in production. Never commit sensitive data to version control.
+                    </div>
+                </div>
+                <div class="tip-tags">
+                    <span class="tag">Configuration</span>
+                    <span class="tag">Security</span>
+                    <span class="tag">DevOps</span>
+                </div>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-category">TypeScript</div>
+                <h3 class="tip-title">Utility Types for Better Type Safety</h3>
+                <div class="tip-content">
+                    <p>Leverage TypeScript's built-in utility types to create more flexible and maintainable type definitions without repetition.</p>
+                    
+                    <div class="code-snippet" data-lang="ts">
+interface User {
+    id: string;
+    name: string;
+    email: string;
+    password: string;
+    createdAt: Date;
+    isActive: boolean;
+}
+
+// Create types for different use cases
+type UserCreate = Omit<User, 'id' | 'createdAt'>;
+type UserUpdate = Partial<Pick<User, 'name' | 'email' | 'isActive'>>;
+type UserPublic = Omit<User, 'password'>;
+type UserResponse = Required<Pick<User, 'id' | 'name' | 'email'>>;
+
+// Function signatures become clear
+function createUser(userData: UserCreate): Promise<User> { }
+function updateUser(id: string, updates: UserUpdate): Promise<User> { }
+function getUserProfile(id: string): Promise<UserPublic> { }
+
+// Advanced utility type example
+type APIResponse<T> = {
+    data: T;
+    status: 'success' | 'error';
+    message?: string;
+};
+
+type UsersResponse = APIResponse<UserPublic[]>;
+type UserResponse = APIResponse<UserPublic>;
+                    </div>
+
+                    <div class="pro-tip">
+                        Common utility types: Partial, Required, Pick, Omit, Record, Exclude, Extract. Master these to avoid repeating type definitions.
+                    </div>
+                </div>
+                <div class="tip-tags">
+                    <span class="tag">TypeScript</span>
+                    <span class="tag">Type Safety</span>
+                    <span class="tag">DRY</span>
+                </div>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-category">Testing</div>
+                <h3 class="tip-title">Test Behavior, Not Implementation</h3>
+                <div class="tip-content">
+                    <p>Write tests that verify what your code does (behavior) rather than how it does it (implementation). This makes tests more valuable and less brittle.</p>
+                    
+                    <div class="code-snippet" data-lang="js">
+// ❌ Testing implementation details
+test('should call setLoading with true then false', () => {
+    const setLoading = jest.fn();
+    const component = render(<UserProfile setLoading={setLoading} />);
+    
+    expect(setLoading).toHaveBeenCalledWith(true);
+    expect(setLoading).toHaveBeenCalledWith(false);
+});
+
+// ✅ Testing behavior
+test('should display user name after loading', async () => {
+    const mockUser = { name: 'John Doe', email: 'john@example.com' };
+    jest.spyOn(api, 'getUser').mockResolvedValue(mockUser);
+    
+    render(<UserProfile userId="123" />);
+    
+    expect(screen.getByText('Loading...')).toBeInTheDocument();
+    
+    const userName = await screen.findByText('John Doe');
+    expect(userName).toBeInTheDocument();
+    
+    expect(screen.queryByText('Loading...')).not.toBeInTheDocument();
+});
+
+// ✅ Testing user interactions
+test('should submit form when button is clicked', async () => {
+    const mockOnSubmit = jest.fn();
+    render(<ContactForm onSubmit={mockOnSubmit} />);
+    
+    await userEvent.type(screen.getByLabelText('Email'), 'test@example.com');
+    await userEvent.type(screen.getByLabelText('Message'), 'Hello world');
+    await userEvent.click(screen.getByRole('button', { name: /submit/i }));
+    
+    expect(mockOnSubmit).toHaveBeenCalledWith({
+        email: 'test@example.com',
+        message: 'Hello world'
+    });
+});
+                    </div>
+
+                    <div class="practical-example">
+                        Focus on testing the user experience: what they see, what happens when they interact, and what the final outcome should be.
+                    </div>
+                </div>
+                <div class="tip-tags">
+                    <span class="tag">Testing</span>
+                    <span class="tag">Quality</span>
+                    <span class="tag">Maintainability</span>
+                </div>
+            </div>
+        </div>
+
+        <section class="featured-section">
+            <h2>Quick Development Wins</h2>
+            <p>Small changes that make a big difference in your daily development workflow</p>
+            
+            <div class="quick-tips">
+                <div class="quick-tip">
+                    <h3>Use console.table()</h3>
+                    <p>Display arrays and objects in a clean table format instead of console.log() for better debugging visualization.</p>
+                </div>
+                
+                <div class="quick-tip">
+                    <h3>Keyboard Shortcuts</h3>
+                    <p>Master your editor's multi-cursor editing, quick file switching, and refactoring shortcuts to code 3x faster.</p>
+                </div>
+                
+                <div class="quick-tip">
+                    <h3>CSS Variables for Theming</h3>
+                    <p>Use CSS custom properties (--color-primary) for consistent theming and easy dark mode implementation.</p>
+                </div>
+                
+                <div class="quick-tip">
+                    <h3>npm Scripts for Automation</h3>
+                    <p>Set up package.json scripts for common tasks like linting, testing, and deployment to standardize workflows.</p>
+                </div>
+                
+                <div class="quick-tip">
+                    <h3>Error Boundaries in React</h3>
+                    <p>Wrap components in error boundaries to gracefully handle JavaScript errors and provide fallback UI.</p>
+                </div>
+                
+                <div class="quick-tip">
+                    <h3>HTTP Status Code Shortcuts</h3>
+                    <p>Remember: 2xx success, 3xx redirect, 4xx client error, 5xx server error. Know common codes: 200, 201, 400, 401, 403, 404, 500.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="categories-section">
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-icon">⚡</div>
+                    <h3>Performance Tips</h3>
+                    <p>Optimize loading times, reduce bundle sizes, and improve runtime performance with proven techniques.</p>
+                </div>
+                </div>
+                </section>
+    </main>
+    </body>

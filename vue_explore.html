@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Explore Vue.js - Tell Me More Tech</title>
+		<link rel="stylesheet" href="css/vue_explore.css" />
+	</head>
+	<body>
+		<header class="site-header">
+			<a href="tellmemore_tech_site.html" class="logo"
+				>Tell Me More <span>Tech</span></a
+			>
+			<nav>
+				<ul>
+					<li><a href="frameworks.html">Frameworks</a></li>
+					<li>
+						<a href="dev_tools.html">Dev Tools</a>
+					</li>
+					<li>
+						<a href="resources_page.html">Resources</a>
+					</li>
+					<li>
+						<a href="all_articles.html">All Articles</a>
+					</li>
+				</ul>
+			</nav>
+			<a href="dev_tips.html" class="btn primary">Free Dev Tips</a>
+		</header>
+
+		<main>
+			<section class="hero-section">
+				<div class="hero-content">
+					<div class="hero-text">
+						<h1>Vue.js</h1>
+						<div class="tagline">The Progressive JavaScript Framework</div>
+						<p>
+							Vue.js makes building interactive web interfaces approachable,
+							versatile, and performant. With its gentle learning curve and
+							powerful features, Vue strikes the perfect balance between
+							simplicity and capability.
+						</p>
+						<div>
+							<button
+								class="btn secondary"
+								onclick="alert('Vue playground coming soon!')"
+							>
+								Try Vue Playground
+							</button>
+						</div>
+					</div>
+					<div class="vue-logo">💚</div>
+				</div>
+			</section>
+
+			<section class="stats-section">
+				<div class="stats-container">
+					<div class="stat-card">
+						<span class="stat-number">4.1M+</span>
+						<span class="stat-label">Weekly Downloads</span>
+						<div class="stat-description">
+							Growing steadily in enterprise adoption
+						</div>
+					</div>
+					<div class="stat-card">
+						<span class="stat-number">200k+</span>
+						<span class="stat-label">GitHub Stars</span>
+						<div class="stat-description">
+							One of the most starred JS frameworks
+						</div>
+					</div>
+					<div class="stat-card">
+						<span class="stat-number">90%</span>
+						<span class="stat-label">Developer Satisfaction</span>
+						<div class="stat-description">
+							Highest satisfaction in State of JS
+						</div>
+					</div>
+					<div class="stat-card">
+						<span class="stat-number">Evan You</span>
+						<span class="stat-label">Created by</span>
+						<div class="stat-description">Independent, community-driven</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="philosophy-section">
+				<div class="philosophy-container">
+					<h2>The Vue Philosophy</h2>
+					<div class="subtitle">"Approachable, Performant, Versatile"</div>
+
+					<div class="philosophy-grid">
+						<div class="philosophy-card">
+							<div class="philosophy-icon">🚀</div>
+							<h3>Progressively Adoptable</h3>
+							<p>
+								Start small with just a script tag, or scale up to a full SPA.
+								Vue grows with your needs, letting you adopt features as your
+								project evolves without breaking existing code.
+							</p>
+							<span class="philosophy-highlight">Incremental Adoption</span>
+						</div>
+
+						<div class="philosophy-card">
+							<div class="philosophy-icon">💡</div>
+							<h3>Intuitive & Approachable</h3>
+							<p>
+								Vue's template syntax feels natural to anyone who knows HTML,
+								CSS, and JavaScript. No complex concepts to master before you
+								can start building real applications.
+							</p>
+							<span class="philosophy-highlight">Gentle Learning Curve</span>
+						</div>
+
+						<div class="philosophy-card">
+							<div class="philosophy-icon">⚡</div>
+							<h3>Performant by Default</h3>
+							<p>
+								Vue's reactivity system and virtual DOM deliver excellent
+								performance out of the box. Automatic optimizations mean your
+								apps are fast without manual tweaking.
+							</p>
+							<span class="philosophy-highlight">Optimized Performance</span>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="features-section">
+				<div class="features-container">
+					<div class="section-header">
+						<h2>What Makes Vue Special</h2>
+						<p>
+							Vue combines the best ideas from React and Angular while
+							maintaining its own unique approach to building user interfaces.
+						</p>
+					</div>
+
+					<div class="features-showcase">
+						<div class="feature-demo">
+							<div
+								style="
+									background: white;
+									border-radius: 10px;
+									padding: 1.5rem;
+									font-family: monospace;
+									font-size: 0.9rem;
+								"
+							>
+								<div style="color: #4fc08d; margin-bottom: 1rem">
+									&lt;template&gt;
+								</div>
+								<div style="margin-left: 1rem; color: #333">
+									&lt;div&gt;<br />
+									&nbsp;&nbsp;&lt;h1&gt;{{ message }}&lt;/h1&gt;<br />
+									&nbsp;&nbsp;&lt;button @click="count++"&gt;<br />
+									&nbsp;&nbsp;&nbsp;&nbsp;Count: {{ count }}<br />
+									&nbsp;&nbsp;&lt;/button&gt;<br />
+									&lt;/div&gt;
+								</div>
+								<div style="color: #4fc08d; margin-top: 1rem">
+									&lt;/template&gt;
+								</div>
+							</div>
+						</div>
+
+						<div class="feature-content">
+							<h3>Template Syntax That Just Works</h3>
+							<p>
+								Vue's template syntax extends HTML with powerful directives and
+								interpolations. It's familiar, readable, and doesn't require
+								learning a new language like JSX.
+							</p>
+							<div class="feature-points">
+								<div class="feature-point">
+									<div class="feature-point-icon">✓</div>
+									<span>HTML-based templates with directives</span>
+								</div>
+								<div class="feature-point">
+									<div class="feature-point-icon">✓</div>
+									<span>Two-way data binding with v-model</span>
+								</div>
+								<div class="feature-point">
+									<div class="feature-point-icon">✓</div>
+									<span>Conditional rendering and lists</span>
+								</div>
+								<div class="feature-point">
+									<div class="feature-point-icon">✓</div>
+									<span>Event handling with @ shorthand</span>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="features-showcase" style="direction: rtl">
+						<div class="feature-demo" style="direction: ltr">
+							<div
+								style="
+									background: white;
+									border-radius: 10px;
+									padding: 1.5rem;
+									font-family: monospace;
+									font-size: 0.9rem;
+								"
+							>
+								<div style="color: #4fc08d; margin-bottom: 1rem">
+									// Composition API
+								</div>
+								<div style="color: #333">
+									import { ref, computed } from 'vue'<br /><br />
+									export default {<br />
+									&nbsp;&nbsp;setup() {<br />
+									&nbsp;&nbsp;&nbsp;&nbsp;const count = ref(0)<br />
+									&nbsp;&nbsp;&nbsp;&nbsp;const double = computed(() =><br />
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;count.value * 2)<br />
+									&nbsp;&nbsp;&nbsp;&nbsp;return { count, double }<br />
+									&nbsp;&nbsp;}<br />
+									}
+								</div>
+							</div>
+						</div>
+
+						<div class="feature-content" style="direction: ltr">
+							<h3>Composition API Power</h3>
+							<p>
+								Vue 3's Composition API gives you the flexibility of React hooks
+								with better TypeScript support and more intuitive logic reuse
+								patterns.
+							</p>
+							<div class="feature-points">
+								<div class="feature-point">
+									<div class="feature-point-icon">✓</div>
+									<span>Better logic reuse and organization</span>
+								</div>
+								<div class="feature-point">
+									<div class="feature-point-icon">✓</div>
+									<span>Excellent TypeScript integration</span>
+								</div>
+								<div class="feature-point">
+									<div class="feature-point-icon">✓</div>
+									<span>Tree-shakable and performant</span>
+								</div>
+								<div class="feature-point">
+									<div class="feature-point-icon">✓</div>
+									<span>Works alongside Options API</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="ecosystem-section">
+				<div class="ecosystem-container">
+					<h2>The Vue Ecosystem</h2>
+					<p>
+						Vue's ecosystem provides everything you need to build
+						production-ready applications, from routing to state management to
+						UI components.
+					</p>
+
+					<div class="ecosystem-grid">
+						<div class="ecosystem-card">
+							<span class="ecosystem-icon">🛣️</span>
+							<h4>Vue Router</h4>
+							<p>
+								Official routing library that seamlessly integrates with Vue.js
+								core. Handle nested routes, guards, and navigation with
+								declarative configuration.
+							</p>
+						</div>
+
+						<div class="ecosystem-card">
+							<span class="ecosystem-icon">🏪</span>
+							<h4>Pinia</h4>
+							<p>
+								The official state management library for Vue. Intuitive,
+								type-safe, and modular - Pinia makes managing complex state a
+								breeze.
+							</p>
+						</div>
+
+						<div class="ecosystem-card">
+							<span class="ecosystem-icon">⚡</span>
+							<h4>Vite</h4>
+							<p>
+								Lightning-fast build tool created by Vue's author. Instant hot
+								module replacement and optimized production builds out of the
+								box.
+							</p>
+						</div>
+
+						<div class="ecosystem-card">
+							<span class="ecosystem-icon">💎</span>
+							<h4>Nuxt.js</h4>
+							<p>
+								The full-stack Vue framework for production. Server-side
+								rendering, static site generation, and auto-routing - Nuxt
+								handles the complexity.
+							</p>
+						</div>
+
+						<div class="ecosystem-card">
+							<span class="ecosystem-icon">🎨</span>
+							<h4>Vuetify</h4>
+							<p>
+								Material Design component framework with 80+ components. Build
+								beautiful, responsive applications with Google's design
+								principles.
+							</p>
+						</div>
+
+						<div class="ecosystem-card">
+							<span class="ecosystem-icon">📱</span>
+							<h4>Quasar</h4>
+							<p>
+								Build once, deploy everywhere. Create Vue.js apps for SPA, PWA,
+								SSR, mobile, and desktop from a single codebase.
+							</p>
+						</div>
+					</div>
+
+					<div style="margin-top: 3rem">
+						<button
+							class="btn vue-style"
+							onclick="alert('🌟 Vue ecosystem guide coming soon!')"
+							style="font-size: 1.1rem; padding: 1rem 2.5rem"
+						>
+							Explore the Full Ecosystem
+						</button>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<script>
+			console.log("Tell Me More Tech - Vue Explorer loaded successfully");
+		</script>
+	</body>
+</html>

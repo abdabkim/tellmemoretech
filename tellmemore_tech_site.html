@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Tell Me More Tech</title>
+		<link rel="stylesheet" href="css/homestyle.css" />
+	</head>
+	<body>
+		<!--Header Section-->
+		<header class="site-header">
+			<div class="logo" onclick="goHome()">Tell Me More <span>Tech</span></div>
+			<nav>
+				<ul>
+					<li><a href="frameworks.html">Frameworks</a></li>
+					<li><a href="dev_tools.html">Dev Tools</a></li>
+					<li>
+						<a href="resources_page.html">Resources</a>
+					</li>
+					<li>
+						<a href="all_articles.html">All Articles</a>
+					</li>
+				</ul>
+			</nav>
+			<a href="dev_tips.html" class="btn primary">Free Dev Tips</a>
+		</header>
+
+		<main>
+			<section class="hero">
+				<h1>The <span>#1 Site</span> for Tech Insights</h1>
+				<p>
+					Our contributor library of tutorials, reviews, and curated tools will
+					help you build faster, smarter, and with more confidence. Subscribe to
+					top tips from experienced developers and product designers.
+				</p>
+
+				<div class="stats">
+					<div><strong>120k+</strong><br />monthly readers</div>
+					<div><strong>80+</strong><br />expert contributors</div>
+					<div><strong>300+</strong><br />curated tools</div>
+				</div>
+
+				<div class="search-container">
+					<div class="search-box">
+						<input
+							type="text"
+							id="searchInput"
+							placeholder="Search articles, frameworks, tools..."
+						/>
+						<button class="btn primary" onclick="performSearch()">
+							Search
+						</button>
+					</div>
+					<div id="searchResults" class="search-results"></div>
+				</div>
+			</section>
+
+			<section class="info-section">
+				<h2>Tell Me More About</h2>
+				<div class="info-grid">
+					<div
+						class="info-tile"
+						onclick="window.open('frameworks.html', '_blank')"
+					>
+						<h3>Frontend Frameworks</h3>
+						<p>
+							Explore comparisons, performance breakdowns, and use cases for
+							React, Vue, Svelte, and more – curated by real devs.
+						</p>
+						<a class="btn secondary">Learn More</a>
+					</div>
+					<div
+						class="info-tile"
+						onclick="window.open('dev_tools.html', '_blank')"
+					>
+						<h3>Dev Tools</h3>
+						<p>
+							From code editors to deployment platforms, we review the tools
+							that make your workflow faster and your code cleaner.
+						</p>
+						<a class="btn secondary">Learn More</a>
+					</div>
+					<div
+						class="info-tile"
+						onclick="window.open('getting_started.html', '_blank')"
+					>
+						<h3>Getting Started in Tech</h3>
+						<p>
+							Whether you're switching careers or just starting out, our
+							beginner guides help you build real projects and get hired.
+						</p>
+						<a class="btn secondary">Learn More</a>
+					</div>
+				</div>
+			</section>
+
+			<section class="article-section">
+				<h2>Latest Articles</h2>
+				<div class="article-card-grid">
+					<div
+						class="article-card"
+						onclick="window.open('svelte_2025.html', '_blank')"
+					>
+						<div class="img">⚡</div>
+						<h3>Why Svelte Is the Framework to Watch in 2025</h3>
+						<div class="article-meta">Sarah Chen • 5 min read</div>
+						<p>
+							Svelte's compiler-first approach is redefining frontend
+							performance. With zero runtime overhead and intuitive syntax, it's
+							becoming the go-to for devs who want speed without complexity.
+						</p>
+						<button class="btn tertiary">Read More</button>
+					</div>
+					<div
+						class="article-card"
+						onclick="window.open('react_vs_vue.html', '_blank')"
+					>
+						<div class="img">⚛️</div>
+						<h3>React vs Vue: The Complete 2025 Guide</h3>
+						<div class="article-meta">David Kim • 7 min read</div>
+						<p>
+							An honest comparison of React and Vue.js in 2025, covering
+							performance, ecosystem, learning curve, and real-world project
+							considerations.
+						</p>
+						<button class="btn tertiary">Read More</button>
+					</div>
+					<div
+						class="article-card"
+						onclick="window.open('debugging_pro.html', '_blank')"
+					>
+						<div class="img">🔍</div>
+						<h3>Debugging Like a Pro: Tools and Mindsets</h3>
+						<div class="article-meta">Alex Thompson • 6 min read</div>
+						<p>
+							Debugging isn't just technical – it's psychological. Learn how top
+							engineers approach bugs with curiosity, precision, and the right
+							tools.
+						</p>
+						<button class="btn tertiary">Read More</button>
+					</div>
+					<div
+						class="article-card"
+						onclick="window.open('vscode_extensions.html', '_blank')"
+					>
+						<div class="img">⚙️</div>
+						<h3>VS Code Extensions That Will Save You Hours</h3>
+						<div class="article-meta">Jessica Park • 4 min read</div>
+						<p>
+							From GitLens to TabNine, these extensions streamline your
+							workflow, reduce context switching, and help you write cleaner
+							code – faster.
+						</p>
+						<button class="btn tertiary">Read More</button>
+					</div>
+				</div>
+				<div class="view-more-wrapper">
+					<a href="all_articles.html" class="btn primary">View More Articles</a>
+				</div>
+			</section>
+		</main>
+
+		<script src="scripts/homescript.js"></script>
+	</body>
+</html>

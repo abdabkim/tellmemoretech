@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Explore Nuxt.js - Tell Me More Tech</title>
+		<link rel="stylesheet" href="css/nuxt_explore.css" />
+	</head>
+	<body>
+		<header class="site-header">
+			<a href="tellmemore_tech_site.html" class="logo"
+				>Tell Me More <span>Tech</span></a
+			>
+			<nav>
+				<ul>
+					<li><a href="frameworks.html">Frameworks</a></li>
+					<li>
+						<a href="dev_tools.html">Dev Tools</a>
+					</li>
+					<li>
+						<a href="resources_page.html">Resources</a>
+					</li>
+					<li>
+						<a href="all_articles.html">All Articles</a>
+					</li>
+				</ul>
+			</nav>
+			<a href="dev_tips.html" class="btn primary">Free Dev Tips</a>
+		</header>
+
+		<main>
+			<section class="hero-section">
+				<div class="mountain-shapes">
+					<div class="mountain mountain-1"></div>
+					<div class="mountain mountain-2"></div>
+					<div class="mountain mountain-3"></div>
+				</div>
+				<div class="hero-content">
+					<div class="hero-text">
+						<h1>Nuxt.js</h1>
+						<div class="tagline">Vue.js on Steroids</div>
+						<p>
+							Nuxt.js is the intuitive Vue framework that makes web development
+							simple and powerful. Build universal applications with server-side
+							rendering, static site generation, and automatic routing - all
+							with the simplicity Vue is known for.
+						</p>
+						<div>
+							<button
+								class="btn secondary"
+								onclick="alert('Nuxt playground coming soon!')"
+							>
+								Try Nuxt Playground
+							</button>
+						</div>
+					</div>
+					<div class="nuxt-logo-container">
+						<div class="nuxt-logo">💎</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="features-section">
+				<div class="features-container">
+					<div class="section-header">
+						<h2>Intuitive Web Development</h2>
+						<p>
+							Nuxt.js combines the simplicity of Vue.js with powerful features
+							for building production-ready applications with minimal
+							configuration.
+						</p>
+					</div>
+
+					<div class="features-grid">
+						<div class="feature-card">
+							<div class="feature-icon">🗂️</div>
+							<h3>Auto-Generated Routing</h3>
+							<p>
+								Create pages by adding Vue files to the pages directory. Nuxt
+								automatically generates routes, including dynamic routes and
+								nested layouts. No routing configuration needed.
+							</p>
+							<span class="feature-highlight">Zero Config Routing</span>
+						</div>
+
+						<div class="feature-card">
+							<div class="feature-icon">🎨</div>
+							<h3>Universal Rendering</h3>
+							<p>
+								Choose between SPA, SSR, or static generation for each page.
+								Pre-render at build time for speed, or render on the server for
+								SEO. The choice is yours, page by page.
+							</p>
+							<span class="feature-highlight">Flexible Rendering</span>
+						</div>
+
+						<div class="feature-card">
+							<div class="feature-icon">📦</div>
+							<h3>Powerful Module System</h3>
+							<p>
+								Extend Nuxt with 200+ community modules for PWA, analytics,
+								content management, and more. Add functionality with a single
+								line in your config file.
+							</p>
+							<span class="feature-highlight">Modular Architecture</span>
+						</div>
+
+						<div class="feature-card">
+							<div class="feature-icon">⚡</div>
+							<h3>Auto Code Splitting</h3>
+							<p>
+								Every page gets its own optimized bundle. Smart prefetching and
+								lazy loading ensure users only download what they need, when
+								they need it.
+							</p>
+							<span class="feature-highlight">Optimized Performance</span>
+						</div>
+
+						<div class="feature-card">
+							<div class="feature-icon">🔧</div>
+							<h3>Built-in Development Tools</h3>
+							<p>
+								Hot module replacement, error overlay, and Vue DevTools
+								integration out of the box. TypeScript support with zero
+								configuration required.
+							</p>
+							<span class="feature-highlight">Developer Experience</span>
+						</div>
+
+						<div class="feature-card">
+							<div class="feature-icon">🚀</div>
+							<h3>Deploy Everywhere</h3>
+							<p>
+								Deploy as SPA, SSR app, or static site to any platform. Vercel,
+								Netlify, AWS, or your own server - Nuxt adapts to your hosting
+								needs.
+							</p>
+							<span class="feature-highlight">Universal Deployment</span>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="architecture-section">
+				<div class="architecture-container">
+					<div class="section-header">
+						<h2>Convention Over Configuration</h2>
+						<p>
+							Nuxt follows intuitive conventions that make development
+							predictable and productive. Your file structure becomes your
+							application architecture.
+						</p>
+					</div>
+
+					<div class="architecture-showcase">
+						<div class="directory-structure">
+							<div class="directory-item folder" data-icon="📁">pages/</div>
+							<div class="directory-item file special" data-icon="📄">
+								index.vue
+							</div>
+							<div class="directory-item file special" data-icon="📄">
+								about.vue
+							</div>
+							<div class="directory-item file special" data-icon="📁">
+								blog/
+							</div>
+							<div class="directory-item file" data-icon="📄">_slug.vue</div>
+							<div class="directory-item folder" data-icon="📁">
+								components/
+							</div>
+							<div class="directory-item file" data-icon="⚙️">Header.vue</div>
+							<div class="directory-item file" data-icon="⚙️">Footer.vue</div>
+							<div class="directory-item folder" data-icon="📁">layouts/</div>
+							<div class="directory-item file special" data-icon="🎨">
+								default.vue
+							</div>
+							<div class="directory-item folder" data-icon="📁">
+								middleware/
+							</div>
+							<div class="directory-item file" data-icon="🛡️">auth.js</div>
+							<div class="directory-item folder" data-icon="📁">plugins/</div>
+							<div class="directory-item file" data-icon="🔌">analytics.js</div>
+							<div class="directory-item folder" data-icon="📁">store/</div>
+							<div class="directory-item file" data-icon="📊">index.js</div>
+						</div>
+
+						<div class="architecture-content">
+							<h3>Everything Has Its Place</h3>
+							<p>
+								Nuxt's directory structure is intuitive and powerful. Each
+								folder serves a specific purpose, and Nuxt automatically handles
+								the rest.
+							</p>
+							<div class="auto-features">
+								<div class="auto-feature">
+									<div class="auto-feature-icon">🛣️</div>
+									<span>Automatic routing from pages directory</span>
+								</div>
+								<div class="auto-feature">
+									<div class="auto-feature-icon">🧩</div>
+									<span>Auto-import components globally</span>
+								</div>
+								<div class="auto-feature">
+									<div class="auto-feature-icon">🎨</div>
+									<span>Layout system with default and custom layouts</span>
+								</div>
+								<div class="auto-feature">
+									<div class="auto-feature-icon">🛡️</div>
+									<span>Middleware for authentication and guards</span>
+								</div>
+								<div class="auto-feature">
+									<div class="auto-feature-icon">🔌</div>
+									<span>Plugin system for third-party integrations</span>
+								</div>
+								<div class="auto-feature">
+									<div class="auto-feature-icon">📊</div>
+									<span>Vuex store with module auto-registration</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="deployment-section">
+				<div class="deployment-container">
+					<h2
+						style="
+							font-size: 3rem;
+							color: #1e293b;
+							margin-bottom: 1rem;
+							font-weight: 800;
+						"
+					>
+						Three Ways to Deploy
+					</h2>
+					<p style="font-size: 1.2rem; color: #64748b; margin-bottom: 3rem">
+						Nuxt adapts to your needs with three deployment modes. Choose the
+						perfect approach for your project requirements.
+					</p>
+
+					<div class="deployment-modes">
+						<div class="mode-card">
+							<div class="mode-icon">🌐</div>
+							<h4>Universal SSR</h4>
+							<p>
+								Server-side rendering for optimal SEO and initial load
+								performance. Perfect for content-heavy sites, e-commerce, and
+								applications that need to rank well in search engines.
+							</p>
+							<span class="mode-badge">SEO Optimized</span>
+						</div>
+						<div class="mode-card">
+							<div class="mode-icon">⚡</div>
+							<h4>Static Generation</h4>
+							<p>
+								Pre-render your entire site at build time. Deploy to any CDN for
+								blazing fast performance. Ideal for blogs, documentation, and
+								marketing sites.
+							</p>
+							<span class="mode-badge">JAMstack Ready</span>
+						</div>
+						<div class="mode-card">
+							<div class="mode-icon">📱</div>
+							<h4>Single Page App</h4>
+							<p>
+								Client-side rendering for dynamic applications. Perfect for
+								dashboards, admin panels, and apps that don't need SEO but
+								require rich interactivity.
+							</p>
+							<span class="mode-badge">Interactive</span>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="ecosystem-section">
+				<div class="ecosystem-container">
+					<h2>The Nuxt Ecosystem</h2>
+					<p
+						style="
+							margin-bottom: 3rem;
+							opacity: 0.9;
+							max-width: 600px;
+							margin-left: auto;
+							margin-right: auto;
+						"
+					>
+						Nuxt's ecosystem provides modules and tools that extend your
+						application's capabilities while maintaining the framework's
+						simplicity and convention-based approach.
+					</p>
+
+					<div class="ecosystem-grid">
+						<div class="ecosystem-card">
+							<span class="ecosystem-icon">📝</span>
+							<h4>Nuxt Content</h4>
+							<p>
+								Git-based headless CMS for Vue.js. Write content in Markdown,
+								YAML, CSV, or JSON. Perfect for blogs, documentation, and
+								content-driven sites.
+							</p>
+						</div>
+
+						<div class="ecosystem-card">
+							<span class="ecosystem-icon">📱</span>
+							<h4>Nuxt PWA</h4>
+							<p>
+								Turn your Nuxt app into a Progressive Web App with offline
+								support, push notifications, and app-like experience on mobile
+								devices.
+							</p>
+						</div>
+
+						<div class="ecosystem-card">
+							<span class="ecosystem-icon">🔐</span>
+							<h4>Nuxt Auth</h4>
+							<p>
+								Authentication module with support for multiple providers, JWT
+								tokens, and session management. Secure your app with minimal
+								configuration.
+							</p>
+						</div>
+
+						<div class="ecosystem-card">
+							<span class="ecosystem-icon">🎨</span>
+							<h4>Nuxt UI</h4>
+							<p>
+								Official UI library with beautiful, accessible components. Built
+								specifically for Nuxt with automatic tree-shaking and theming
+								support.
+							</p>
+						</div>
+
+						<div class="ecosystem-card">
+							<span class="ecosystem-icon">📊</span>
+							<h4>Nuxt Analytics</h4>
+							<p>
+								Easy integration with Google Analytics, Adobe Analytics, and
+								other tracking services. Privacy-focused and GDPR compliant out
+								of the box.
+							</p>
+						</div>
+
+						<div class="ecosystem-card">
+							<span class="ecosystem-icon">🚀</span>
+							<h4>Nuxt Image</h4>
+							<p>
+								Optimized image component with automatic resizing, format
+								conversion, and lazy loading. Improve performance without manual
+								optimization.
+							</p>
+						</div>
+					</div>
+
+					<div style="margin-top: 3rem">
+						<button
+							class="btn nuxt-style"
+							onclick="alert('💎 Nuxt starter templates coming soon!')"
+							style="font-size: 1.1rem; padding: 1rem 2.5rem"
+						>
+							Start Building with Nuxt
+						</button>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<script src="scripts/nuxt_explore.js"></script>
+	</body>
+</html>

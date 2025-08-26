@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Dev Tools - Tell Me More Tech</title>
+		<link rel="stylesheet" href="css/dev_tools.css" />
+	</head>
+	<body>
+		<div class="grid-bg"></div>
+
+		<header class="site-header">
+			<a href="tellmemore_tech_site.html" class="logo"
+				>Tell Me More <span>Tech</span></a
+			>
+			<nav>
+				<ul>
+					<li><a href="frameworks.html">Frameworks</a></li>
+					<li><a href="dev_tools.html" class="active">Dev Tools</a></li>
+					<li>
+						<a href="resources_page.html">Resources</a>
+					</li>
+					<li>
+						<a href="all_articles.html">All Articles</a>
+					</li>
+				</ul>
+			</nav>
+			<a href="dev_tips.html" class="btn">Free Dev Tips</a>
+		</header>
+
+		<main>
+			<section class="hero-section">
+				<div class="floating-tools">
+					<div class="tool-icon">⚙️</div>
+					<div class="tool-icon">🔧</div>
+					<div class="tool-icon">🛠️</div>
+					<div class="tool-icon">💻</div>
+					<div class="tool-icon">🚀</div>
+					<div class="tool-icon">⚡</div>
+				</div>
+
+				<div class="hero-content">
+					<h1 class="hero-title glitch">Developer Tools Arsenal</h1>
+					<p class="hero-subtitle">
+						Discover the tools that make great developers even better
+					</p>
+
+					<div class="categories-nav">
+						<button class="category-btn active" onclick="filterTools('all')">
+							All Tools
+						</button>
+						<button class="category-btn" onclick="filterTools('editors')">
+							Code Editors
+						</button>
+						<button
+							class="category-btn"
+							onclick="filterTools('version-control')"
+						>
+							Version Control
+						</button>
+						<button class="category-btn" onclick="filterTools('debugging')">
+							Debugging
+						</button>
+						<button class="category-btn" onclick="filterTools('deployment')">
+							Deployment
+						</button>
+						<button class="category-btn" onclick="filterTools('design')">
+							Design
+						</button>
+					</div>
+				</div>
+			</section>
+
+			<section class="tools-section">
+				<div class="tools-container">
+					<div class="tools-grid" id="toolsGrid">
+						<!-- VS Code -->
+						<div class="tool-card" data-category="editors">
+							<div class="tool-header">
+								<div class="tool-logo pulse-glow">VS</div>
+								<div class="tool-info">
+									<h3>Visual Studio Code</h3>
+									<span class="tool-category">Code Editor</span>
+								</div>
+							</div>
+							<p class="tool-description">
+								The most popular code editor on the planet. Lightweight,
+								powerful, and extensible with thousands of extensions to
+								customize your development experience.
+							</p>
+							<div class="tool-features">
+								<span class="feature-tag">IntelliSense</span>
+								<span class="feature-tag">Extensions</span>
+								<span class="feature-tag">Git Integration</span>
+								<span class="feature-tag">Debugging</span>
+								<span class="feature-tag">Free</span>
+							</div>
+							<div class="tool-rating">
+								<span class="stars">★★★★★</span>
+								<span class="rating-text">4.8/5 (500k+ reviews)</span>
+							</div>
+							<div class="tool-actions">
+								<button
+									class="action-btn primary"
+									onclick="alert('Redirecting to VS Code...')"
+								>
+									Download
+								</button>
+								<button
+									class="action-btn secondary"
+									onclick="alert('VS Code review coming soon!')"
+								>
+									Review
+								</button>
+							</div>
+						</div>
+
+						<!-- Git -->
+						<div class="tool-card" data-category="version-control">
+							<div class="tool-header">
+								<div class="tool-logo">🌳</div>
+								<div class="tool-info">
+									<h3>Git</h3>
+									<span class="tool-category">Version Control</span>
+								</div>
+							</div>
+							<p class="tool-description">
+								The distributed version control system that powers modern
+								software development. Track changes, collaborate with teams, and
+								never lose your work again.
+							</p>
+							<div class="tool-features">
+								<span class="feature-tag">Branching</span>
+								<span class="feature-tag">Merging</span>
+								<span class="feature-tag">Distributed</span>
+								<span class="feature-tag">Fast</span>
+								<span class="feature-tag">Open Source</span>
+							</div>
+							<div class="tool-rating">
+								<span class="stars">★★★★★</span>
+								<span class="rating-text">Industry Standard</span>
+							</div>
+							<div class="tool-actions">
+								<button
+									class="action-btn primary"
+									onclick="alert('Git installation guide coming soon!')"
+								>
+									Install Guide
+								</button>
+								<button
+									class="action-btn secondary"
+									onclick="alert('Git tutorial coming soon!')"
+								>
+									Tutorial
+								</button>
+							</div>
+						</div>
+
+						<!-- Chrome DevTools -->
+						<div class="tool-card" data-category="debugging">
+							<div class="tool-header">
+								<div class="tool-logo">🔍</div>
+								<div class="tool-info">
+									<h3>Chrome DevTools</h3>
+									<span class="tool-category">Debugging</span>
+								</div>
+							</div>
+							<p class="tool-description">
+								Built-in browser tools for debugging, profiling, and optimizing
+								web applications. Essential for any web developer working on
+								performance and debugging.
+							</p>
+							<div class="tool-features">
+								<span class="feature-tag">Performance</span>
+								<span class="feature-tag">Network</span>
+								<span class="feature-tag">Console</span>
+								<span class="feature-tag">Elements</span>
+								<span class="feature-tag">Built-in</span>
+							</div>
+							<div class="tool-rating">
+								<span class="stars">★★★★★</span>
+								<span class="rating-text">Essential Tool</span>
+							</div>
+							<div class="tool-actions">
+								<button
+									class="action-btn primary"
+									onclick="alert('DevTools guide coming soon!')"
+								>
+									Learn More
+								</button>
+								<button
+									class="action-btn secondary"
+									onclick="alert('DevTools tips coming soon!')"
+								>
+									Pro Tips
+								</button>
+							</div>
+						</div>
+
+						<!-- Docker -->
+						<div class="tool-card" data-category="deployment">
+							<div class="tool-header">
+								<div class="tool-logo">🐳</div>
+								<div class="tool-info">
+									<h3>Docker</h3>
+									<span class="tool-category">Containerization</span>
+								</div>
+							</div>
+							<p class="tool-description">
+								Containerize your applications for consistent deployment across
+								any environment. Build once, run anywhere with Docker's powerful
+								containerization platform.
+							</p>
+							<div class="tool-features">
+								<span class="feature-tag">Containers</span>
+								<span class="feature-tag">Portability</span>
+								<span class="feature-tag">Scalable</span>
+								<span class="feature-tag">Isolation</span>
+								<span class="feature-tag">DevOps</span>
+							</div>
+							<div class="tool-rating">
+								<span class="stars">★★★★☆</span>
+								<span class="rating-text">4.5/5 (Enterprise favorite)</span>
+							</div>
+							<div class="tool-actions">
+								<button
+									class="action-btn primary"
+									onclick="alert('Docker setup guide coming soon!')"
+								>
+									Get Started
+								</button>
+								<button
+									class="action-btn secondary"
+									onclick="alert('Docker tutorial coming soon!')"
+								>
+									Tutorial
+								</button>
+							</div>
+						</div>
+
+						<!-- Figma -->
+						<div class="tool-card" data-category="design">
+							<div class="tool-header">
+								<div class="tool-logo">🎨</div>
+								<div class="tool-info">
+									<h3>Figma</h3>
+									<span class="tool-category">Design Tool</span>
+								</div>
+							</div>
+							<p class="tool-description">
+								Collaborative design tool that brings teams together. Create,
+								prototype, and handoff designs seamlessly with real-time
+								collaboration features.
+							</p>
+							<div class="tool-features">
+								<span class="feature-tag">Collaborative</span>
+								<span class="feature-tag">Prototyping</span>
+								<span class="feature-tag">Components</span>
+								<span class="feature-tag">Cloud-based</span>
+								<span class="feature-tag">Free Tier</span>
+							</div>
+							<div class="tool-rating">
+								<span class="stars">★★★★★</span>
+								<span class="rating-text">4.7/5 (Design favorite)</span>
+							</div>
+							<div class="tool-actions">
+								<button
+									class="action-btn primary"
+									onclick="alert('Figma signup coming soon!')"
+								>
+									Try Free
+								</button>
+								<button
+									class="action-btn secondary"
+									onclick="alert('Figma guide coming soon!')"
+								>
+									Guide
+								</button>
+							</div>
+						</div>
+
+						<!-- Postman -->
+						<div class="tool-card" data-category="debugging">
+							<div class="tool-header">
+								<div class="tool-logo">📡</div>
+								<div class="tool-info">
+									<h3>Postman</h3>
+									<span class="tool-category">API Testing</span>
+								</div>
+							</div>
+							<p class="tool-description">
+								The complete API development environment. Test, document, and
+								monitor APIs with ease. Essential for backend developers and API
+								integration work.
+							</p>
+							<div class="tool-features">
+								<span class="feature-tag">API Testing</span>
+								<span class="feature-tag">Collections</span>
+								<span class="feature-tag">Automation</span>
+								<span class="feature-tag">Documentation</span>
+								<span class="feature-tag">Team Sync</span>
+							</div>
+							<div class="tool-rating">
+								<span class="stars">★★★★☆</span>
+								<span class="rating-text">4.4/5 (Developer choice)</span>
+							</div>
+							<div class="tool-actions">
+								<button
+									class="action-btn primary"
+									onclick="alert('Postman download coming soon!')"
+								>
+									Download
+								</button>
+								<button
+									class="action-btn secondary"
+									onclick="alert('API testing guide coming soon!')"
+								>
+									API Guide
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="comparison-section">
+				<div class="comparison-container">
+					<h2 class="section-title">Tool Comparison Matrix</h2>
+
+					<div class="comparison-table">
+						<div class="table-header">
+							<div>Tool</div>
+							<div>Ease of Use</div>
+							<div>Features</div>
+							<div>Community</div>
+							<div>Price</div>
+						</div>
+
+						<div class="table-row">
+							<div class="tool-name">VS Code</div>
+							<div class="rating-cell rating-excellent">Excellent</div>
+							<div class="rating-cell rating-excellent">Excellent</div>
+							<div class="rating-cell rating-excellent">Huge</div>
+							<div class="rating-cell rating-excellent">Free</div>
+						</div>
+
+						<div class="table-row">
+							<div class="tool-name">Git</div>
+							<div class="rating-cell rating-good">Moderate</div>
+							<div class="rating-cell rating-excellent">Excellent</div>
+							<div class="rating-cell rating-excellent">Massive</div>
+							<div class="rating-cell rating-excellent">Free</div>
+						</div>
+
+						<div class="table-row">
+							<div class="tool-name">Chrome DevTools</div>
+							<div class="rating-cell rating-good">Good</div>
+							<div class="rating-cell rating-excellent">Excellent</div>
+							<div class="rating-cell rating-excellent">Large</div>
+							<div class="rating-cell rating-excellent">Free</div>
+						</div>
+
+						<div class="table-row">
+							<div class="tool-name">Docker</div>
+							<div class="rating-cell rating-fair">Learning Curve</div>
+							<div class="rating-cell rating-excellent">Excellent</div>
+							<div class="rating-cell rating-excellent">Large</div>
+							<div class="rating-cell rating-good">Freemium</div>
+						</div>
+
+						<div class="table-row">
+							<div class="tool-name">Figma</div>
+							<div class="rating-cell rating-excellent">Excellent</div>
+							<div class="rating-cell rating-excellent">Excellent</div>
+							<div class="rating-cell rating-good">Growing</div>
+							<div class="rating-cell rating-good">Freemium</div>
+						</div>
+
+						<div class="table-row">
+							<div class="tool-name">Postman</div>
+							<div class="rating-cell rating-good">Good</div>
+							<div class="rating-cell rating-excellent">Excellent</div>
+							<div class="rating-cell rating-good">Large</div>
+							<div class="rating-cell rating-good">Freemium</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<script src="scripts/dev_tools.js"></script>
+	</body>
+</html>

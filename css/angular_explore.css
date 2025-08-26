@@ -1,0 +1,650 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", sans-serif;
+    background-color: #f8fafc;
+    color: #334155;
+    line-height: 1.6;
+}
+
+.site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 1rem 2rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    color: #1e293b;
+    text-decoration: none;
+}
+
+.logo span {
+    color: #3b82f6;
+}
+
+nav ul {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+}
+
+nav a {
+    color: #64748b;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+nav a:hover {
+    color: #3b82f6;
+}
+
+.btn {
+    padding: 0.6rem 1.2rem;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn.primary {
+    background-color: #3b82f6;
+    color: #ffffff;
+}
+
+.btn.secondary {
+    background-color: transparent;
+    border: 2px solid #dd0031;
+    color: #dd0031;
+}
+
+.btn.angular-style {
+    background: linear-gradient(135deg, #dd0031 0%, #c3002f 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(221, 0, 49, 0.3);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.btn.angular-style:hover {
+    background: linear-gradient(135deg, #c3002f 0%, #dd0031 100%);
+    color: white;
+}
+
+main {
+    margin-top: 80px;
+    min-height: calc(100vh - 80px);
+}
+
+.hero-section {
+    background: linear-gradient(135deg,
+            #1a1a1a 0%,
+            #2d2d2d 50%,
+            #404040 100%);
+    color: white;
+    padding: 4rem 2rem;
+    position: relative;
+    overflow: hidden;
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+}
+
+.hero-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 15% 25%,
+            rgba(221, 0, 49, 0.1) 0%,
+            transparent 50%),
+        radial-gradient(circle at 85% 75%,
+            rgba(221, 0, 49, 0.08) 0%,
+            transparent 50%),
+        conic-gradient(from 45deg at 50% 50%,
+            transparent 0deg,
+            rgba(221, 0, 49, 0.05) 90deg,
+            transparent 180deg);
+    animation: rotateGradient 10s linear infinite;
+}
+
+@keyframes rotateGradient {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.hero-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 4rem;
+    align-items: center;
+}
+
+.hero-text h1 {
+    font-size: 4rem;
+    font-weight: 900;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg,
+            #dd0031 0%,
+            #ff4569 50%,
+            #ffffff 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-text .tagline {
+    font-size: 1.6rem;
+    color: #dd0031;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.hero-text p {
+    font-size: 1.3rem;
+    opacity: 0.9;
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+}
+
+.angular-logo-container {
+    position: relative;
+    width: 320px;
+    height: 320px;
+    margin: 0 auto;
+}
+
+.angular-logo {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #dd0031 0%, #c3002f 100%);
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8rem;
+    color: white;
+    animation: logoFloat 6s ease-in-out infinite;
+    box-shadow: 0 20px 60px rgba(221, 0, 49, 0.4);
+    position: relative;
+}
+
+.angular-logo::before {
+    content: "";
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 60%;
+    background: rgba(255, 255, 255, 0.1);
+    clip-path: polygon(50% 0%, 20% 80%, 80% 80%);
+}
+
+.logo-orbits {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    animation: orbit 15s linear infinite;
+}
+
+.orbit {
+    position: absolute;
+    border: 2px solid rgba(221, 0, 49, 0.3);
+    border-radius: 50%;
+    animation: counter-orbit 15s linear infinite reverse;
+}
+
+.orbit-1 {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.orbit-2 {
+    width: 130%;
+    height: 130%;
+    top: -15%;
+    left: -15%;
+    animation-duration: 20s;
+}
+
+.orbit-dot {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #dd0031;
+    border-radius: 50%;
+    top: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+@keyframes logoFloat {
+
+    0%,
+    100% {
+        transform: translateY(0px) scale(1);
+    }
+
+    50% {
+        transform: translateY(-15px) scale(1.02);
+    }
+}
+
+@keyframes orbit {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes counter-orbit {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(-360deg);
+    }
+}
+
+.enterprise-section {
+    background: white;
+    padding: 5rem 2rem;
+    position: relative;
+}
+
+.enterprise-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.section-header h2 {
+    font-size: 3.5rem;
+    color: #1e293b;
+    margin-bottom: 1rem;
+    font-weight: 800;
+    position: relative;
+}
+
+.section-header h2::after {
+    content: "🏢";
+    position: absolute;
+    right: -80px;
+    top: 0;
+    font-size: 2.5rem;
+}
+
+.section-header p {
+    font-size: 1.2rem;
+    color: #64748b;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.enterprise-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 3rem;
+}
+
+.enterprise-card {
+    background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+    border-radius: 25px;
+    padding: 3rem 2.5rem;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+}
+
+.enterprise-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #dd0031 0%, #c3002f 100%);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.enterprise-card:hover::before {
+    transform: scaleX(1);
+}
+
+.enterprise-card:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(221, 0, 49, 0.15);
+    border-color: #dd0031;
+}
+
+.enterprise-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #dd0031 0%, #c3002f 100%);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: white;
+    box-shadow: 0 10px 25px rgba(221, 0, 49, 0.3);
+}
+
+.enterprise-card h3 {
+    font-size: 1.6rem;
+    color: #1e293b;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+.enterprise-card p {
+    color: #64748b;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+}
+
+.enterprise-highlight {
+    background: linear-gradient(135deg, #dd0031 0%, #c3002f 100%);
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: 25px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: inline-block;
+    box-shadow: 0 4px 15px rgba(221, 0, 49, 0.3);
+}
+
+.architecture-section {
+    background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+    padding: 5rem 2rem;
+}
+
+.architecture-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.architecture-showcase {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    margin-top: 3rem;
+}
+
+.architecture-diagram {
+    background: white;
+    border-radius: 20px;
+    padding: 3rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.diagram-layer {
+    background: linear-gradient(135deg, #dd0031 0%, #c3002f 100%);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+}
+
+.diagram-layer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.2),
+            transparent);
+    transition: left 2s ease-in-out;
+}
+
+.diagram-layer:hover::before {
+    left: 100%;
+}
+
+.architecture-content h3 {
+    font-size: 2rem;
+    color: #1e293b;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+.architecture-content p {
+    color: #64748b;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+}
+
+.feature-list {
+    display: grid;
+    gap: 1rem;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: white;
+    border-radius: 10px;
+    border-left: 4px solid #dd0031;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.feature-icon {
+    width: 40px;
+    height: 40px;
+    background: #dd0031;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.companies-section {
+    background: white;
+    padding: 5rem 2rem;
+}
+
+.companies-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.companies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.company-card {
+    background: linear-gradient(145deg, #f8fafc 0%, #e2e8f0 100%);
+    border-radius: 15px;
+    padding: 2rem;
+    transition: all 0.3s ease;
+    border: 1px solid #e2e8f0;
+}
+
+.company-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(221, 0, 49, 0.1);
+    border-color: #dd0031;
+}
+
+.company-logo {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.company-name {
+    font-weight: 700;
+    color: #1e293b;
+    font-size: 1.1rem;
+}
+
+.ecosystem-section {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    color: white;
+    padding: 5rem 2rem;
+    position: relative;
+}
+
+.ecosystem-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.ecosystem-container h2 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    font-weight: 800;
+}
+
+.ecosystem-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+    margin-top: 3rem;
+}
+
+.ecosystem-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 2.5rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(221, 0, 49, 0.2);
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+.ecosystem-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #dd0031;
+    box-shadow: 0 20px 40px rgba(221, 0, 49, 0.2);
+}
+
+.ecosystem-icon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    display: block;
+}
+
+.ecosystem-card h4 {
+    color: #dd0031;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.ecosystem-card p {
+    opacity: 0.9;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .site-header {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    main {
+        margin-top: 120px;
+    }
+
+    .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2rem;
+    }
+
+    .hero-text h1 {
+        font-size: 2.8rem;
+    }
+
+    .angular-logo-container {
+        width: 250px;
+        height: 250px;
+    }
+
+    .architecture-showcase {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .section-header h2 {
+        font-size: 2.5rem;
+    }
+
+    .section-header h2::after {
+        right: -60px;
+        font-size: 2rem;
+    }
+}

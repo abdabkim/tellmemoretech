@@ -1,0 +1,374 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", sans-serif;
+    background-color: #f8fafc;
+    color: #334155;
+    line-height: 1.6;
+}
+
+.site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 1rem 2rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    color: #1e293b;
+    text-decoration: none;
+}
+
+.logo span {
+    color: #3b82f6;
+}
+
+nav ul {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+}
+
+nav a {
+    color: #64748b;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+nav a:hover,
+nav a.active {
+    color: #3b82f6;
+}
+
+.btn {
+    padding: 0.6rem 1.2rem;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn.primary {
+    background-color: #3b82f6;
+    color: #ffffff;
+}
+
+.btn.secondary {
+    background-color: transparent;
+    border: 2px solid #3b82f6;
+    color: #3b82f6;
+}
+
+.btn:hover {
+    background-color: #2563eb;
+    color: #ffffff;
+}
+
+main {
+    margin-top: 80px;
+    min-height: calc(100vh - 80px);
+}
+
+.hero-banner {
+    background: linear-gradient(135deg,
+            #3b82f6 0%,
+            #1e40af 50%,
+            #1d4ed8 100%);
+    color: white;
+    text-align: center;
+    padding: 4rem 2rem 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-banner::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.1)" points="0,1000 1000,800 1000,1000"/></svg>');
+    background-size: cover;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-banner h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: 800;
+}
+
+.hero-banner p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto;
+    opacity: 0.9;
+}
+
+.framework-showcase {
+    padding: 4rem 2rem;
+    background: white;
+}
+
+.showcase-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 3rem;
+}
+
+.framework-card {
+    background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+    border-radius: 20px;
+    padding: 2.5rem;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+}
+
+.framework-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--accent-color);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.framework-card:hover::before {
+    transform: scaleX(1);
+}
+
+.framework-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
+    border-color: var(--accent-color);
+}
+
+.framework-card.react {
+    --accent-color: #61dafb;
+}
+
+.framework-card.vue {
+    --accent-color: #4fc08d;
+}
+
+.framework-card.angular {
+    --accent-color: #dd0031;
+}
+
+.framework-card.svelte {
+    --accent-color: #ff3e00;
+}
+
+.framework-card.nextjs {
+    --accent-color: #000000;
+}
+
+.framework-card.nuxt {
+    --accent-color: #00dc82;
+}
+
+.framework-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.framework-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+    background: var(--accent-color);
+}
+
+.framework-info h3 {
+    font-size: 1.4rem;
+    color: #1e293b;
+    margin-bottom: 0.25rem;
+    font-weight: 700;
+}
+
+.framework-tagline {
+    color: #64748b;
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+.framework-description {
+    color: #475569;
+    margin-bottom: 2rem;
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.framework-highlights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+}
+
+.highlight-tag {
+    background: var(--accent-color);
+    color: white;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    opacity: 0.9;
+}
+
+.framework-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.comparison-section {
+    background: #f1f5f9;
+    padding: 4rem 2rem;
+}
+
+.comparison-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.comparison-container h2 {
+    font-size: 2.5rem;
+    color: #1e293b;
+    margin-bottom: 1rem;
+    font-weight: 800;
+}
+
+.comparison-subtitle {
+    font-size: 1.1rem;
+    color: #64748b;
+    margin-bottom: 3rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.comparison-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.comparison-card {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #e2e8f0;
+}
+
+.comparison-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+}
+
+.comparison-card h4 {
+    color: #3b82f6;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.comparison-card p {
+    color: #64748b;
+    line-height: 1.6;
+}
+
+.cta-section {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    color: white;
+    text-align: center;
+    padding: 4rem 2rem;
+}
+
+.cta-content h2 {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    font-weight: 800;
+}
+
+.cta-content p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (max-width: 768px) {
+    .site-header {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    main {
+        margin-top: 120px;
+    }
+
+    .hero-banner h1 {
+        font-size: 2.2rem;
+    }
+
+    .showcase-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .framework-card {
+        padding: 2rem;
+    }
+
+    .framework-actions {
+        justify-content: center;
+    }
+}
+

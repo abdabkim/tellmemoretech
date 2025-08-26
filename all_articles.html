@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>All Articles - Tell Me More Tech</title>
+		<link rel="stylesheet" href="css/all_articles.css" />
+	</head>
+	<body>
+		<div class="particles-bg" id="particlesBg"></div>
+		<header class="site-header">
+			<a href="tellmemore_tech_site.html" class="logo"
+				>Tell Me More <span>Tech</span></a
+			>
+			<nav>
+				<ul>
+					<li><a href="frameworks.html">Frameworks</a></li>
+					<li><a href="dev_tools.html">Dev Tools</a></li>
+					<li><a href="resources_page.html">Resources</a></li>
+					<li><a href="all_articles.html" class="active">All Articles</a></li>
+				</ul>
+			</nav>
+			<a href="dev_tips.html" class="btn">Free Dev Tips</a>
+		</header>
+		<main>
+			<section class="hero-section">
+				<div class="hero-content">
+					<h1>Complete Article Library</h1>
+					<p class="hero-subtitle">
+						Dive deep into our comprehensive collection of tech insights,
+						tutorials, and industry analysis
+					</p>
+					<div class="stats-row">
+						<div class="stat-item">
+							<span class="stat-number" id="totalArticles">10</span
+							><span>Total Articles</span>
+						</div>
+						<div class="stat-item">
+							<span class="stat-number">8</span><span>Expert Authors</span>
+						</div>
+						<div class="stat-item">
+							<span class="stat-number">6</span><span>Categories</span>
+						</div>
+						<div class="stat-item">
+							<span class="stat-number">120k+</span><span>Monthly Reads</span>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="controls-section">
+				<div class="controls-container">
+					<div class="search-filter-row">
+						<div class="search-box">
+							<input
+								type="text"
+								id="searchInput"
+								placeholder="Search articles, topics, authors..."
+							/>
+							<button onclick="performSearch()">Search</button>
+						</div>
+						<select
+							class="sort-dropdown"
+							id="sortSelect"
+							onchange="sortArticles()"
+						>
+							<option value="newest">Newest First</option>
+							<option value="oldest">Oldest First</option>
+							<option value="popular">Most Popular</option>
+							<option value="reading-time">Reading Time</option>
+							<option value="title">Title A-Z</option>
+						</select>
+					</div>
+					<div class="category-filters">
+						<button
+							class="category-btn active"
+							onclick="filterByCategory('all')"
+						>
+							All Articles
+						</button>
+						<button
+							class="category-btn"
+							onclick="filterByCategory('frameworks')"
+						>
+							Frameworks
+						</button>
+						<button
+							class="category-btn"
+							onclick="filterByCategory('dev-tools')"
+						>
+							Dev Tools
+						</button>
+						<button class="category-btn" onclick="filterByCategory('career')">
+							Career
+						</button>
+						<button
+							class="category-btn"
+							onclick="filterByCategory('tutorials')"
+						>
+							Tutorials
+						</button>
+						<button
+							class="category-btn"
+							onclick="filterByCategory('resources')"
+						>
+							Resources
+						</button>
+						<button class="category-btn" onclick="filterByCategory('backend')">
+							Backend
+						</button>
+					</div>
+				</div>
+			</section>
+			<section class="articles-section">
+				<div class="articles-container">
+					<div class="articles-grid" id="articlesGrid"></div>
+					<div class="no-results" id="noResults" style="display: none">
+						<h3>No Articles Found</h3>
+						<p>
+							Try adjusting your search terms or filters to find what you're
+							looking for.
+						</p>
+					</div>
+				</div>
+			</section>
+		</main>
+		<script src="scripts/all_articles.js"></script>
+	</body>
+</html>
