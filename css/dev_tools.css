@@ -25,6 +25,14 @@ body {
     right: 0;
     z-index: 1000;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background-color 0.3s ease;
+    min-height: 70px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 
 .logo {
@@ -33,16 +41,25 @@ body {
     cursor: pointer;
     color: #ffffff;
     text-decoration: none;
+    flex-shrink: 0;
 }
 
 .logo span {
     color: #ffd700;
 }
 
+nav {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+}
+
 nav ul {
     display: flex;
     gap: 1.5rem;
     list-style: none;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 nav a {
@@ -52,6 +69,7 @@ nav a {
     cursor: pointer;
     text-decoration: none;
     position: relative;
+    white-space: nowrap;
 }
 
 nav a.active {
@@ -88,11 +106,47 @@ nav a:hover {
     display: inline-block;
     background: linear-gradient(135deg, #ffd700 0%, #ff6b35 100%);
     color: #0f0f23;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+}
+
+/* Mobile menu toggle */
+.mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.mobile-menu-toggle span {
+    width: 25px;
+    height: 3px;
+    background-color: #ffffff;
+    margin: 3px 0;
+    transition: 0.3s;
+}
+
+/* Hidden checkbox for mobile menu */
+#mobile-menu-checkbox {
+    display: none;
+}
+
+/* Mobile menu toggle animation */
+#mobile-menu-checkbox:checked~.mobile-menu-toggle span:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+#mobile-menu-checkbox:checked~.mobile-menu-toggle span:nth-child(2) {
+    opacity: 0;
+}
+
+#mobile-menu-checkbox:checked~.mobile-menu-toggle span:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
 }
 
 main {
@@ -580,42 +634,425 @@ main {
     }
 }
 
+/* Mobile Styles */
 @media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: flex;
+        order: 3;
+    }
+
     .site-header {
-        flex-direction: column;
-        gap: 1rem;
         padding: 1rem;
+        flex-wrap: nowrap;
+        position: relative;
+    }
+
+    .header-right {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .btn {
+        order: 1;
+    }
+
+    .mobile-menu-toggle {
+        order: 2;
+    }
+
+    nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(15, 15, 35, 0.98);
+        backdrop-filter: blur(15px);
+        border-radius: 0 0 15px 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    #mobile-menu-checkbox:checked~nav {
+        display: block;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 0;
+        padding: 1rem 0;
+    }
+
+    nav li {
+        width: 100%;
+    }
+
+    nav a {
+        display: block;
+        padding: 1rem 2rem;
+        text-align: left;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        width: 100%;
+    }
+
+    nav li:last-child a {
+        border-bottom: none;
+    }
+
+    .btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
     }
 
     main {
-        margin-top: 120px;
+        margin-top: 70px;
+    }
+
+    .hero-section {
+        padding: 3rem 1rem;
+        min-height: 60vh;
     }
 
     .hero-title {
-        font-size: 2.8rem;
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+    }
+
+    .hero-subtitle {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+    }
+
+    .categories-nav {
+        gap: 0.5rem;
+        margin: 2rem 0;
+        padding: 0 1rem;
+    }
+
+    .category-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+        border-radius: 20px;
+        min-width: auto;
+    }
+
+    .tools-section {
+        padding: 3rem 1rem;
     }
 
     .tools-grid {
         grid-template-columns: 1fr;
+        gap: 2rem;
+        margin-top: 1.5rem;
+    }
+
+    .tool-card {
+        padding: 2rem;
+        border-radius: 15px;
+    }
+
+    .tool-header {
+        flex-direction: row;
+        text-align: left;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .tool-logo {
+        width: 60px;
+        height: 60px;
+        font-size: 1.8rem;
+        border-radius: 15px;
+        flex-shrink: 0;
+    }
+
+    .tool-info h3 {
+        font-size: 1.3rem;
+    }
+
+    .tool-info .tool-category {
+        font-size: 0.8rem;
+    }
+
+    .tool-description {
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .tool-features {
+        justify-content: flex-start;
+        margin-bottom: 1.5rem;
+    }
+
+    .feature-tag {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.6rem;
+    }
+
+    .tool-rating {
+        justify-content: flex-start;
+        margin-bottom: 1rem;
+    }
+
+    .tool-actions {
+        flex-direction: row;
+        gap: 0.8rem;
+    }
+
+    .action-btn {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
+    }
+
+    .comparison-section {
+        padding: 3rem 1rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .comparison-table {
+        border-radius: 15px;
+        overflow: visible;
+    }
+
+    .table-header {
+        display: none;
+    }
+
+    .table-row {
+        display: block;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 15px;
+        margin-bottom: 1.5rem;
+        padding: 1.5rem;
+        border: 1px solid rgba(255, 215, 0, 0.2);
+        transition: all 0.3s ease;
+    }
+
+    .table-row:hover {
+        background: rgba(255, 215, 0, 0.1);
+        border-color: #ffd700;
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(255, 215, 0, 0.15);
+    }
+
+    .table-row:last-child {
+        border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+        margin-bottom: 0;
+    }
+
+    .tool-name {
+        text-align: center;
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+    }
+
+    .rating-cell {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.8rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .rating-cell:last-child {
+        border-bottom: none;
+    }
+
+    .rating-cell::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.7);
+        flex: 0 0 auto;
+        min-width: 100px;
+    }
+
+    .floating-tools {
+        display: none;
+    }
+
+    .grid-bg {
+        background-size: 30px 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .site-header {
+        padding: 0.8rem;
+    }
+
+    .logo {
+        font-size: 1.2rem;
+    }
+
+    .btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+
+    .mobile-menu-toggle span {
+        width: 20px;
+        height: 2px;
+    }
+
+    main {
+        margin-top: 65px;
+    }
+
+    .hero-section {
+        padding: 2rem 0.5rem;
+        min-height: 50vh;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
     }
 
     .categories-nav {
         flex-direction: column;
         align-items: center;
+        gap: 0.8rem;
+        padding: 0 0.5rem;
+    }
+
+    .category-btn {
+        width: 80%;
+        max-width: 200px;
+        padding: 0.6rem 1rem;
+        font-size: 0.85rem;
+    }
+
+    .tools-section {
+        padding: 2rem 0.5rem;
+    }
+
+    .tool-card {
+        padding: 1.5rem;
+    }
+
+    .tool-logo {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+        border-radius: 12px;
+    }
+
+    .tool-info h3 {
+        font-size: 1.2rem;
+    }
+
+    .tool-info .tool-category {
+        font-size: 0.75rem;
+    }
+
+    .tool-description {
+        font-size: 0.9rem;
+    }
+
+    .feature-tag {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.5rem;
+    }
+
+    .comparison-section {
+        padding: 2rem 0.5rem;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .tool-name {
+        font-size: 1.2rem;
+    }
+
+    .rating-cell {
+        font-size: 0.85rem;
+    }
+
+    .grid-bg {
+        background-size: 25px 25px;
+    }
+}
+
+/* Ultra small screens */
+@media (max-width: 360px) {
+    .hero-title {
+        font-size: 1.8rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .category-btn {
+        width: 90%;
+        font-size: 0.8rem;
+    }
+
+    .tool-card {
+        padding: 1.25rem;
+    }
+
+    .section-title {
+        font-size: 1.6rem;
+    }
+}
+
+/* Landscape mobile optimization */
+@media (max-width: 768px) and (orientation: landscape) {
+    .hero-section {
+        min-height: 60vh;
+        padding: 2rem 1rem;
+    }
+
+    .hero-title {
+        font-size: 2.2rem;
+    }
+
+    .categories-nav {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .category-btn {
+        width: auto;
+        min-width: 120px;
+    }
+}
+
+/* Tablet specific adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .hero-title {
+        font-size: 3.5rem;
+    }
+
+    .tools-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+    }
+
+    .tool-card {
+        padding: 2rem;
     }
 
     .table-header,
     .table-row {
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: 0.5rem;
-    }
-
-    .tool-name {
-        text-align: center;
-    }
-
-    .tool-actions {
-        flex-direction: column;
+        grid-template-columns: 1.8fr repeat(4, 1fr);
+        gap: 0.8rem;
+        padding: 1.2rem 1rem;
     }
 }

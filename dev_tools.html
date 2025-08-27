@@ -9,22 +9,32 @@
 	<body>
 		<div class="grid-bg"></div>
 
-		<header class="site-header">
-			<a href="index.html" class="logo">Tell Me More <span>Tech</span></a>
-			<nav>
-				<ul>
-					<li><a href="frameworks.html">Frameworks</a></li>
-					<li><a href="dev_tools.html" class="active">Dev Tools</a></li>
-					<li>
-						<a href="resources_page.html">Resources</a>
-					</li>
-					<li>
-						<a href="all_articles.html">All Articles</a>
-					</li>
-				</ul>
-			</nav>
-			<a href="dev_tips.html" class="btn">Free Dev Tips</a>
-		</header>
+	<header class="site-header">
+    <a href="index.html" class="logo">Tell Me More <span>Tech</span></a>
+    
+    <!-- Hidden checkbox for mobile menu -->
+    <input type="checkbox" id="mobile-menu-checkbox">
+    
+    <nav id="mobileNav">
+        <ul>
+            <li><a href="frameworks.html">Frameworks</a></li>
+            <li><a href="dev_tools.html" class="active">Dev Tools</a></li>
+            <li><a href="resources_page.html">Resources</a></li>
+            <li><a href="all_articles.html">All Articles</a></li>
+        </ul>
+    </nav>
+    
+    <div class="header-right">
+        <a href="dev_tips.html" class="btn">Free Dev Tips</a>
+        
+        <!-- Mobile menu toggle label -->
+        <label for="mobile-menu-checkbox" class="mobile-menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+    </div>
+</header>
 
 		<main>
 			<section class="hero-section">
